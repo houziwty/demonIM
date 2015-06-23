@@ -12,5 +12,7 @@ public class DemonMessage implements Serializable {
 	private static final long serialVersionUID = 5471528125749414349L;
 	
 	private DemonLinkedList<DemonHeader>_hdeaders;
+	private DemonLinkedList<DemonBody>_boyds;
+	private DemonMessageType _messageType;
 
 }
