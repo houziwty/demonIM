@@ -14,5 +14,7 @@ public class DemonMessage implements Serializable {
 	private DemonLinkedList<DemonHeader>_hdeaders;
 	private DemonLinkedList<DemonBody>_boyds;
 	private DemonMessageType _messageType;
+	private byte _method;
+    private transient DemonTransaction _parentTrans;
 
 }
