@@ -158,11 +158,14 @@ public class DemonMessage implements Serializable {
 		}
 		return ret;
 	}
-	public String getKey(boolean diretion){
-		StringBuilder sb=new StringBuilder();
-		for(DemonHeader header:new DemonHeader[]{this.From, this.To, this.CallId, this.Csequence, this.Fpid, this.Tpid}){
-			if(header!=null&&header.isNotNullValue()){
-				if(header.getType()!=DemonHeaderType.Fpid&&header.getType()!=DemonHeaderType.Tpid)
+
+	public String getKey(boolean diretion) {
+		StringBuilder sb = new StringBuilder();
+		for (DemonHeader header : new DemonHeader[] { this.From, this.To,
+				this.CallId, this.Csequence, this.Fpid, this.Tpid }) {
+			if (header != null && header.isNotNullValue()) {
+				if (header.getType() != DemonHeaderType.Fpid
+						&& header.getType() != DemonHeaderType.Tpid)
 					sb.append(header.getInt64());
 				else
 					sb.append(header.getHexString());
@@ -172,16 +175,97 @@ public class DemonMessage implements Serializable {
 		sb.append(diretion);
 		return sb.toString();
 	}
-	public DemonMessageType getMessageType(){
+
+	public DemonMessageType getMessageType() {
 		return _messageType;
 	}
-	public byte getMethodValue(){
+
+	public byte getMethodValue() {
 		return _method;
 	}
-	public boolean isMessageType(DemonMessageType messageType){
-		return this._messageType==messageType;
+
+	public boolean isMessageType(DemonMessageType messageType) {
+		return this._messageType == messageType;
 	}
-	public boolean isMethod(byte method){
-		return this._method==method;
+
+	public boolean isMethod(byte method) {
+		return this._method == method;
 	}
+
+	public boolean isEvent(byte evnet) {
+		if (Event != null && Event.getValueLength() == 1) {
+			return Event.getValue()[0] == evnet;
+		}
+		return false;
+	}
+	public boolean isEvent(Long event)
+	{
+		if (Event != null && Event.getValueLength() > 0)
+		{
+			return Event.getInt64() == event;
+		}
+		return false;
+	}
+	public void removeHeader(DemonHeader header)
+	{
+
+		switch (header.getType())
+		{
+			case DemonHeaderType.From:
+			{
+				this._headers.remove(header.Node);
+				From = null;
+			}
+			break;
+			case DemonHeaderType.To:
+			{
+				this._headers.remove(header.Node);
+				To = null;
+			}
+			break;
+			case DemonHeaderType.Fpid:
+			{
+				this._headers.remove(header.Node);
+				Fpid = null;
+			}
+			break;
+			case DemonHeaderType.Tpid:
+			{
+				this._headers.remove(header.Node);
+				Tpid = null;
+			}
+			break;
+			case DemonHeaderType.CallId:
+			{
+				this._headers.remove(header.Node);
+				CallId = null;
+			}
+			break;
+			case DemonHeaderType.Csequence:
+			{
+				this._headers.remove(header.Node);
+				Csequence = null;
+			}
+			break;
+			case DemonHeaderType.Event:
+			{
+				this._headers.remove(header.Node);
+				Event = null;
+			}
+			default:
+			{
+				this._headers.remove(header.Node);
+			}
+			break;
+		}
+	}
+	public void removeHeaders(byte headerType)
+	{
+		ArrayList<DemonHeader> headers = this.getHeaders(headerType);
+		for (DemonHeader header : headers)
+		{
+			removeHeader(header);
+		}
+	}
+
 }
