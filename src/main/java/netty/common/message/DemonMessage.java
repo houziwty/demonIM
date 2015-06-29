@@ -75,7 +75,7 @@ public class DemonMessage implements Serializable {
 				break;
 			case DemonHeaderType.Csequence: {
 				header.Node = this._headers.put(header);
-				this.Casequence = header;
+				this.Csequence = header;
 			}
 				break;
 			case DemonHeaderType.Fpid: {
@@ -171,5 +171,17 @@ public class DemonMessage implements Serializable {
 		}
 		sb.append(diretion);
 		return sb.toString();
+	}
+	public DemonMessageType getMessageType(){
+		return _messageType;
+	}
+	public byte getMethodValue(){
+		return _method;
+	}
+	public boolean isMessageType(DemonMessageType messageType){
+		return this._messageType==messageType;
+	}
+	public boolean isMethod(byte method){
+		return this._method==method;
 	}
 }
