@@ -1,6 +1,7 @@
 package netty.common.message;
 
 import java.io.Serializable;
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
 
 import netty.common.util.DemonLinkedList;
@@ -267,5 +268,18 @@ public class DemonMessage implements Serializable {
 			removeHeader(header);
 		}
 	}
+    public synchronized void releaseBodys(){
+    	_bodys.moveToHead();
+    	DemonLinkedNode<DemonBody>bodyNode=null;
+    	while((bodyNode=_bodys.get())!=null){
+    		_bodys.remove(bodyNode);
+    	}
+    }
+    public boolean containsHeader(byte typebyte){
+    	return getHeader(typebyte)!=null;
+    }
+    public synchronized ByteBuffer toByteBuffer(){
+    	return null;
+    }
 
 }
