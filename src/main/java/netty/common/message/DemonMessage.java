@@ -279,6 +279,10 @@ public class DemonMessage implements Serializable {
     	return getHeader(typebyte)!=null;
     }
     public synchronized ByteBuffer toByteBuffer(){
+    	int messageSize=2;
+    	_headers.moveToHead();
+    	DemonLinkedNode<DemonHeader>headerNode=null;
+    	
     	return null;
     }
 
