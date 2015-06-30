@@ -199,91 +199,150 @@ public class DemonMessage implements Serializable {
 		}
 		return false;
 	}
-	public boolean isEvent(Long event)
-	{
-		if (Event != null && Event.getValueLength() > 0)
-		{
+
+	public boolean isEvent(Long event) {
+		if (Event != null && Event.getValueLength() > 0) {
 			return Event.getInt64() == event;
 		}
 		return false;
 	}
-	public void removeHeader(DemonHeader header)
-	{
 
-		switch (header.getType())
-		{
-			case DemonHeaderType.From:
-			{
-				this._headers.remove(header.Node);
-				From = null;
-			}
+	public void removeHeader(DemonHeader header) {
+
+		switch (header.getType()) {
+		case DemonHeaderType.From: {
+			this._headers.remove(header.Node);
+			From = null;
+		}
 			break;
-			case DemonHeaderType.To:
-			{
-				this._headers.remove(header.Node);
-				To = null;
-			}
+		case DemonHeaderType.To: {
+			this._headers.remove(header.Node);
+			To = null;
+		}
 			break;
-			case DemonHeaderType.Fpid:
-			{
-				this._headers.remove(header.Node);
-				Fpid = null;
-			}
+		case DemonHeaderType.Fpid: {
+			this._headers.remove(header.Node);
+			Fpid = null;
+		}
 			break;
-			case DemonHeaderType.Tpid:
-			{
-				this._headers.remove(header.Node);
-				Tpid = null;
-			}
+		case DemonHeaderType.Tpid: {
+			this._headers.remove(header.Node);
+			Tpid = null;
+		}
 			break;
-			case DemonHeaderType.CallId:
-			{
-				this._headers.remove(header.Node);
-				CallId = null;
-			}
+		case DemonHeaderType.CallId: {
+			this._headers.remove(header.Node);
+			CallId = null;
+		}
 			break;
-			case DemonHeaderType.Csequence:
-			{
-				this._headers.remove(header.Node);
-				Csequence = null;
-			}
+		case DemonHeaderType.Csequence: {
+			this._headers.remove(header.Node);
+			Csequence = null;
+		}
 			break;
-			case DemonHeaderType.Event:
-			{
-				this._headers.remove(header.Node);
-				Event = null;
-			}
-			default:
-			{
-				this._headers.remove(header.Node);
-			}
+		case DemonHeaderType.Event: {
+			this._headers.remove(header.Node);
+			Event = null;
+		}
+		default: {
+			this._headers.remove(header.Node);
+		}
 			break;
 		}
 	}
-	public void removeHeaders(byte headerType)
-	{
+
+	public void removeHeaders(byte headerType) {
 		ArrayList<DemonHeader> headers = this.getHeaders(headerType);
-		for (DemonHeader header : headers)
-		{
+		for (DemonHeader header : headers) {
 			removeHeader(header);
 		}
 	}
-    public synchronized void releaseBodys(){
-    	_bodys.moveToHead();
-    	DemonLinkedNode<DemonBody>bodyNode=null;
-    	while((bodyNode=_bodys.get())!=null){
-    		_bodys.remove(bodyNode);
-    	}
-    }
-    public boolean containsHeader(byte typebyte){
-    	return getHeader(typebyte)!=null;
-    }
-    public synchronized ByteBuffer toByteBuffer(){
-    	int messageSize=2;
-    	_headers.moveToHead();
-    	DemonLinkedNode<DemonHeader>headerNode=null;
-    	
-    	return null;
-    }
+
+	public synchronized void releaseBodys() {
+		_bodys.moveToHead();
+		DemonLinkedNode<DemonBody> bodyNode = null;
+		while ((bodyNode = _bodys.get()) != null) {
+			_bodys.remove(bodyNode);
+		}
+	}
+
+	public boolean containsHeader(byte typebyte) {
+		return getHeader(typebyte) != null;
+	}
+
+	public synchronized ByteBuffer toByteBuffer() {
+		int messageSize = 2;
+		_headers.moveToHead();
+		DemonLinkedNode<DemonHeader> headerNode = null;
+		while ((headerNode = _headers.get()) != null) {
+			messageSize += headerNode.obj().getValueLength() + 2;
+		}
+		_bodys.moveToHead();
+		DemonLinkedNode<DemonBody> bodyNode = null;
+		while ((bodyNode = _bodys.get()) != null) {
+			messageSize += bodyNode.obj().getValueLength() + 3;
+		}
+		ByteBuffer buffer = ByteBuffer.allocate(messageSize);
+		buffer.put(_method);
+		_headers.moveToHead();
+		while ((headerNode = _headers.get()) != null) {
+			DemonHeader h = headerNode.obj();
+			int length = h.getValueLength();
+			buffer.put(h.type);
+			buffer.put((byte) length);
+			if (length > 0) {
+				buffer.put(h.getValue(), 0, length);
+			}
+		}
+		_bodys.moveToHead();
+		while ((bodyNode = _bodys.get()) != null) {
+			DemonBody b = bodyNode.obj();
+			int length = b.getValueLength();
+			buffer.put(b.getType());
+			buffer.put((byte) (length & 0x000000FF));
+			buffer.put((byte) ((length >> 8) & 0x000000FF));
+			if (length > 0) {
+				buffer.put(b.getValue(), 0, length);
+			}
+		}
+
+		buffer.put((byte) 0);
+		buffer.flip();
+
+		return buffer;
+	}
+
+	public byte[] toBytes() {
+		return toByteBuffer().array();
+	}
+
+	public DemonRequest toRequest() {
+		if (_messageType == DemonMessageType.Request) {
+			return (DemonRequest) this;
+		} else {
+			return null;
+		}
+	}
+
+	public DemonResponse toResponse() {
+		if (_messageType == DemonMessageType.Response) {
+			return (DemonResponse) this;
+		} else {
+			return null;
+		}
+	}
+
+	public String toString(boolean printBody) {
+       StringBuffer sb=new StringBuffer();
+		sb.append("This message is: ");
+		sb.append(this.getMessageType());
+		sb.append("\r\n");
+		if(this.isMessageType(DemonMessageType.Request)){
+			sb.append("Method:");
+			sb.append(DemonRequestMethod.get(this._method));
+			sb.append("\r\n");
+		}
+		return sb.toString();
+	}
 
 }
