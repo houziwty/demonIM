@@ -3,6 +3,7 @@ package netty.common.message;
 import java.io.Serializable;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import netty.common.util.DemonLinkedList;
 import netty.common.util.DemonLinkedNode;
@@ -341,6 +342,18 @@ public class DemonMessage implements Serializable {
 			sb.append("Method:");
 			sb.append(DemonRequestMethod.get(this._method));
 			sb.append("\r\n");
+		}else{
+			sb.append("ResponseCode : ");
+			sb.append(DemonRequestMethod.get(this._method));
+			sb.append("\r\n");
+		}
+		Iterator<DemonHeader>fi=this.getHeaders().iterator();
+		while(fi.hasNext()){
+			sb.append(fi.next().toString(printBody));
+		}
+		Iterator<DemonBody>bi=this.getBodys().iterator();
+		while(bi.hasNext()){
+			sb.append(bi.next().toString());
 		}
 		return sb.toString();
 	}
