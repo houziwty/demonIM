@@ -334,28 +334,61 @@ public class DemonMessage implements Serializable {
 	}
 
 	public String toString(boolean printBody) {
-       StringBuffer sb=new StringBuffer();
+		StringBuffer sb = new StringBuffer();
 		sb.append("This message is: ");
 		sb.append(this.getMessageType());
 		sb.append("\r\n");
-		if(this.isMessageType(DemonMessageType.Request)){
+		if (this.isMessageType(DemonMessageType.Request)) {
 			sb.append("Method:");
 			sb.append(DemonRequestMethod.get(this._method));
 			sb.append("\r\n");
-		}else{
+		} else {
 			sb.append("ResponseCode : ");
 			sb.append(DemonRequestMethod.get(this._method));
 			sb.append("\r\n");
 		}
-		Iterator<DemonHeader>fi=this.getHeaders().iterator();
-		while(fi.hasNext()){
+		Iterator<DemonHeader> fi = this.getHeaders().iterator();
+		while (fi.hasNext()) {
 			sb.append(fi.next().toString(printBody));
 		}
-		Iterator<DemonBody>bi=this.getBodys().iterator();
-		while(bi.hasNext()){
+		Iterator<DemonBody> bi = this.getBodys().iterator();
+		while (bi.hasNext()) {
 			sb.append(bi.next().toString());
 		}
 		return sb.toString();
 	}
 
+	@Override
+	public String toString() {
+		return this.toString(true);
+	}
+
+	public String toHexString() {
+		StringBuffer sb = new StringBuffer();
+		sb.append("This message is:");
+		sb.append(this.getMessageType());
+		sb.append("\r\n");
+		if (this.isMessageType(DemonMessageType.Request)) {
+			sb.append("Method:");
+			sb.append(DemonRequestMethod.get(this._method));
+			sb.append("\r\n");
+		} else {
+			sb.append("ResponseCode : ");
+			sb.append(DemonResponseCode.get(this._method));
+			sb.append("\r\n");
+		}
+		Iterator<DemonHeader> fi = this.getHeaders().iterator();
+		while (fi.hasNext()) {
+			sb.append(fi.next().toString(false));
+
+		}
+		Iterator<DemonBody> bi = this.getBodys().iterator();
+		while (bi.hasNext()) {
+			sb.append(bi.next().toHexString());
+		}
+		return sb.toString();
+	}
+	public void setMethod(byte value){
+		_method=value;
+	}
 }
