@@ -53,6 +53,7 @@ public class DemonMessageDecoder extends ByteToMessageDecoder {
 		  lengthSize++;
 		  digit=buf.readByte();
 		  code=code^digit;
+		  msgLength+=(digit & 0x7f)*multiplier;
 		}while((digit & 0x80)>0);
 		
 		return null;
