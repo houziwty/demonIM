@@ -12,15 +12,54 @@ public class DemonMessageDecoder extends ByteToMessageDecoder {
 	private volatile long lastReadTime;
 	private volatile ScheduledFuture<?> timeout;
 
+	private boolean closed;
+	private boolean isOutbound = false;
+
 	public DemonMessageDecoder(long timeoutMillis) {
 		this.timeoutMillis = timeoutMillis;
+	}
+
+	public DemonMessageDecoder(long timeoutMillis, boolean isOutbound) {
+		this.timeoutMillis = timeoutMillis;
+		this.isOutbound = isOutbound;
 	}
 
 	@Override
 	protected void decode(ChannelHandlerContext ctx, ByteBuf in,
 			List<Object> out) throws Exception {
-		// TODO Auto-generated method stub
-
+		Object decoded=decode(ctx,in);
+			if(decoded!=null){
+				out.add(decoded);
+			}
 	}
 
+	protected Object decode(ChannelHandlerContext ctx, ByteBuf buf) {
+		if(buf.readableBytes()==0){
+			return null;
+		}
+		if(buf.readableBytes()<3){
+		    this.resumeTimer(ctx);
+		    return null;
+		}
+		buf.markReaderIndex();
+		int first=buf.readByte();
+		int second=buf.readByte();
+		int digit;
+		int code=first;
+		int msgLength=0;
+		int multiplier=1;
+		int lengthSize=0;
+		do{
+		  lengthSize++;
+		  digit=buf.readByte();
+		  code=code^digit;
+		}while((digit & 0x80)>0);
+		
+		return null;
+	}
+
+	private void resumeTimer(ChannelHandlerContext ctx) {
+		// TODO Auto-generated method stub
+		
+	}
 }
