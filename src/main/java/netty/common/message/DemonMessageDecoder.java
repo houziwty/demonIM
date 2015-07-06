@@ -55,8 +55,25 @@ public class DemonMessageDecoder extends ByteToMessageDecoder {
 		  code=code^digit;
 		  msgLength+=(digit & 0x7f)*multiplier;
 		}while((digit & 0x80)>0);
-		
+		if(code!=second){
+			close(ctx);
+			return null;
+		}
+		if(lengthSize>3){
+			close(ctx);
+			return null;
+		}
+		if(buf.readableBytes()<msgLength){
+			resumeTimer(ctx);
+			buf.resetReaderIndex();
+			return null;
+		}
 		return null;
+	}
+
+	private void close(ChannelHandlerContext ctx) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	private void resumeTimer(ChannelHandlerContext ctx) {
