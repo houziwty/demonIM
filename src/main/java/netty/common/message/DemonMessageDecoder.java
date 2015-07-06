@@ -1,7 +1,10 @@
 package netty.common.message;
 
+import java.io.ByteArrayInputStream;
 import java.util.List;
 import java.util.concurrent.ScheduledFuture;
+
+import netty.common.util.FormatUtil;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
@@ -27,57 +30,69 @@ public class DemonMessageDecoder extends ByteToMessageDecoder {
 	@Override
 	protected void decode(ChannelHandlerContext ctx, ByteBuf in,
 			List<Object> out) throws Exception {
-		Object decoded=decode(ctx,in);
-			if(decoded!=null){
-				out.add(decoded);
-			}
+		Object decoded = decode(ctx, in);
+		if (decoded != null) {
+			out.add(decoded);
+		}
 	}
 
 	protected Object decode(ChannelHandlerContext ctx, ByteBuf buf) {
-		if(buf.readableBytes()==0){
+		if (buf.readableBytes() == 0) {
 			return null;
 		}
-		if(buf.readableBytes()<3){
-		    this.resumeTimer(ctx);
-		    return null;
+		if (buf.readableBytes() < 3) {
+			this.resumeTimer(ctx);
+			return null;
 		}
 		buf.markReaderIndex();
-		int first=buf.readByte();
-		int second=buf.readByte();
+		int first = buf.readByte();
+		int second = buf.readByte();
 		int digit;
-		int code=first;
-		int msgLength=0;
-		int multiplier=1;
-		int lengthSize=0;
-		do{
-		  lengthSize++;
-		  digit=buf.readByte();
-		  code=code^digit;
-		  msgLength+=(digit & 0x7f)*multiplier;
-		}while((digit & 0x80)>0);
-		if(code!=second){
+		int code = first;
+		int msgLength = 0;
+		int multiplier = 1;
+		int lengthSize = 0;
+		do {
+			lengthSize++;
+			digit = buf.readByte();
+			code = code ^ digit;
+			msgLength += (digit & 0x7f) * multiplier;
+		} while ((digit & 0x80) > 0);
+		if (code != second) {
 			close(ctx);
 			return null;
 		}
-		if(lengthSize>3){
+		if (lengthSize > 3) {
 			close(ctx);
 			return null;
 		}
-		if(buf.readableBytes()<msgLength){
+		if (buf.readableBytes() < msgLength) {
 			resumeTimer(ctx);
 			buf.resetReaderIndex();
 			return null;
 		}
+		byte[] data = new byte[2 + lengthSize + msgLength];
+		buf.resetReaderIndex();
+		buf.readBytes(data);
+		pauseTimer();
+		data = FormatUtil.obfuscation(ctx, data, 2 + lengthSize);
+		MessageInputStream mis = new MessageInputStream(
+				new ByteArrayInputStream(data), msgLength, lengthSize,
+				isOutbound);
 		return null;
+	}
+
+	private void pauseTimer() {
+
 	}
 
 	private void close(ChannelHandlerContext ctx) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	private void resumeTimer(ChannelHandlerContext ctx) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }
