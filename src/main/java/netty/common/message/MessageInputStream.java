@@ -9,4 +9,14 @@ public class MessageInputStream implements Cloneable {
 		// TODO Auto-generated constructor stub
 	}
 
+	public DemonMessage readMessage() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void close() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

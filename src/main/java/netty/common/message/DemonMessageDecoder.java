@@ -79,7 +79,9 @@ public class DemonMessageDecoder extends ByteToMessageDecoder {
 		MessageInputStream mis = new MessageInputStream(
 				new ByteArrayInputStream(data), msgLength, lengthSize,
 				isOutbound);
-		return null;
+		DemonMessage msg=mis.readMessage();
+		mis.close();
+		return msg;
 	}
 
 	private void pauseTimer() {
