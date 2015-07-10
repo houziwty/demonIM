@@ -86,12 +86,21 @@ public class DemonMessageDecoder extends ByteToMessageDecoder {
 	}
 
 	private void pauseTimer() {
-
+		if (timeout != null) {
+			timeout.cancel(false);
+			timeout = null;
+		}
 	}
 
 	private void close(ChannelHandlerContext ctx) {
 		// TODO Auto-generated method stub
-
+		if (timeout != null) {
+			timeout.cancel(false);
+			timeout = null;
+		}
+		closed = true;
+		ctx.fireExceptionCaught(BadMessageException.INSTANCE);
+		ctx.close();
 	}
 
 	private void resumeTimer(ChannelHandlerContext ctx) {
@@ -134,9 +143,17 @@ public class DemonMessageDecoder extends ByteToMessageDecoder {
 			}
 		}
 
-		private void readTimeOut(ChannelHandlerContext ctx2) {
+		private void readTimeOut(ChannelHandlerContext ctx) {
 			// TODO Auto-generated method stub
-
+			if (!closed) {
+				if (timeout != null) {
+					timeout.cancel(false);
+					timeout = null;
+				}
+				closed = true;
+				ctx.fireExceptionCaught(ReadDataTimeoutException.INSTANCE);
+				ctx.close();
+			}
 		}
 
 	}
