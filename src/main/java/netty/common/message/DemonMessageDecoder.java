@@ -3,6 +3,7 @@ package netty.common.message;
 import java.io.ByteArrayInputStream;
 import java.util.List;
 import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
 
 import netty.common.util.FormatUtil;
 
@@ -79,7 +80,7 @@ public class DemonMessageDecoder extends ByteToMessageDecoder {
 		MessageInputStream mis = new MessageInputStream(
 				new ByteArrayInputStream(data), msgLength, lengthSize,
 				isOutbound);
-		DemonMessage msg=mis.readMessage();
+		DemonMessage msg = mis.readMessage();
 		mis.close();
 		return msg;
 	}
@@ -95,6 +96,48 @@ public class DemonMessageDecoder extends ByteToMessageDecoder {
 
 	private void resumeTimer(ChannelHandlerContext ctx) {
 		// TODO Auto-generated method stub
+		lastReadTime = System.currentTimeMillis();
+		if (timeoutMillis > 0 && (timeout == null || timeout.isCancelled())
+				&& !closed) {
+			timeout = ctx.executor().schedule(new ReadTimeoutTask(ctx),
+					timeoutMillis, TimeUnit.MILLISECONDS);
+		}
+
+	}
+
+	private final class ReadTimeoutTask implements Runnable {
+		private final ChannelHandlerContext ctx;
+
+		ReadTimeoutTask(ChannelHandlerContext ctx) {
+			this.ctx = ctx;
+		}
+
+		@Override
+		public void run() {
+			// TODO Auto-generated method stub
+			if (!ctx.channel().isOpen()) {
+				return;
+			}
+			long currentTime = System.currentTimeMillis();
+			long nextDelay = timeoutMillis - (currentTime - lastReadTime);
+			if (nextDelay <= 0) {
+				timeout = ctx.executor().schedule(this, timeoutMillis,
+						TimeUnit.MICROSECONDS);
+				try {
+					readTimeOut(ctx);
+				} catch (Exception ex) {
+					ctx.fireExceptionCaught(ex);
+				}
+			} else {
+				timeout = ctx.executor().schedule(this, nextDelay,
+						TimeUnit.MICROSECONDS);
+			}
+		}
+
+		private void readTimeOut(ChannelHandlerContext ctx2) {
+			// TODO Auto-generated method stub
+
+		}
 
 	}
 }
