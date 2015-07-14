@@ -5,6 +5,7 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import netty.common.transaction.DemonTransaction;
 import netty.common.util.DemonLinkedList;
 import netty.common.util.DemonLinkedNode;
 
@@ -107,7 +108,7 @@ public class DemonMessage implements Serializable {
 		return _parentTrans;
 	}
 
-	public void set_parentTrans(DemonTransaction _parentTrans) {
+	public void setParentTrans(DemonTransaction _parentTrans) {
 		this._parentTrans = _parentTrans;
 	}
 

@@ -8,7 +8,7 @@ import netty.common.tracer.DemonTracer;
 
 public class DemonTransaction {
 
-	private DemonRequest _reques;
+	private DemonRequest _request;
 	private DemonResponse _response;
 	private String _key;
 	private boolean _isFake;
@@ -19,4 +19,11 @@ public class DemonTransaction {
 	public DemonTransactionEvent  TransactionEvent;
 	private static AtomicLong cseq=new AtomicLong();
 	private static DemonTracer tracer=DemonTracer.getInstance(DemonTransaction.class,true);
+	
+	private DemonTransaction(DemonRequest request){
+		_request=request;
+		_request.setParentTrans(this);
+		
+	}
+
 }

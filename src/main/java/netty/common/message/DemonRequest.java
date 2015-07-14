@@ -42,4 +42,6 @@ public class DemonRequest extends DemonMessage implements Cloneable {
 	public void setMethod(byte method) {
 		super.setMethod(method);
 	}
+
+
 }
