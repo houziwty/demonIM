@@ -23,7 +23,17 @@ public class DemonTransaction {
 	private DemonTransaction(DemonRequest request){
 		_request=request;
 		_request.setParentTrans(this);
+		_updatetime=System.currentTimeMillis();
 		
 	}
-
+	public static DemonTransaction createFakeTransaction(DemonRequest request){
+		DemonTransaction trans=new DemonTransaction(request);
+		trans._isFake=true;
+		return trans;
+	}
+	
+	DemonTransaction(DemonRequest request,boolean direction,DemonTransactionManager manager){
+		this(request);
+		
+	}
 }
