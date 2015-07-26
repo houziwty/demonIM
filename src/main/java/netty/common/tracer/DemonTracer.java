@@ -8,4 +8,9 @@ public class DemonTracer {
 		return null;
 	}
 
+	public static DemonTracer getInstance(Class<?> classz) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -9,7 +9,7 @@ import netty.common.transaction.DemonTransaction;
 import netty.common.util.DemonLinkedList;
 import netty.common.util.DemonLinkedNode;
 
-public class DemonMessage implements Serializable {
+public abstract class DemonMessage implements Serializable {
 
 	/**
 	 * 
