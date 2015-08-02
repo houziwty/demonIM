@@ -18,7 +18,7 @@ public class DemonTransaction {
 	private DemonTransactionManager _maager;
 	public DemonTransactionEvent  TransactionEvent;
 	private static AtomicLong cseq=new AtomicLong();
-	private static DemonTracer tracer=DemonTracer.getInstance(DemonTransaction.class,true);
+	private static DemonTracer tracer=DemonTracer.getInstance(DemonTransaction.class);
 	
 	private DemonTransaction(DemonRequest request){
 		_request=request;
