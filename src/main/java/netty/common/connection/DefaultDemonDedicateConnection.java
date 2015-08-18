@@ -16,9 +16,13 @@ import netty.common.transaction.DemonTransactionCreateEvent;
 import netty.common.transaction.DemonTransactionManager;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
+import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelInitializer;
+import io.netty.channel.ChannelOption;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
+import io.netty.channel.socket.nio.NioSocketChannel;
 
 public class DefaultDemonDedicateConnection extends
 		ChannelInitializer<SocketChannel> implements DemonDedicateConnection,
@@ -47,12 +51,6 @@ public class DefaultDemonDedicateConnection extends
 		_config = config;
 		_group = group;
 		_transMgr = new DemonTransactionManager(this);
-	}
-
-	@Override
-	protected void initChannel(SocketChannel arg0) throws Exception {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -91,20 +89,65 @@ public class DefaultDemonDedicateConnection extends
 	}
 
 	@Override
-	public void connect(SocketAddress address, Object attachment) {
+	public void connect(SocketAddress address, final Object attachment) {
 		// TODO Auto-generated method stub
 		Bootstrap b = new Bootstrap();
+		b.group(_group);
+		b.channel(NioSocketChannel.class);
+		b.handler(this);
+		b.option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 60 * 1000);
+		ChannelFuture f = b.connect(address);
+		f.addListener(new ChannelFutureListener() {
+
+			@Override
+			public void operationComplete(ChannelFuture future)
+					throws Exception {
+				if (future.isSuccess())
+					processConnectionConnected(future.channel(), attachment);
+				else
+					processDisconnectionConnected(attachment);
+
+			}
+		});
+
+	}
+
+	// 处理连接
+	protected void processConnectionConnected(Channel channel, Object attachment) {
+		_channel = channel;
+		if (_connEvent != null)
+			_connEvent.onConnected(this, attachment);
+	}
+
+	protected void processDisconnectionConnected(Object attachment) {
+		if (_connEvent != null)
+			_connEvent.onDisconnected(this, attachment);
+		_transMgr.reset();
+		_channel = null;
+	}
+
+	@Override
+	protected void initChannel(SocketChannel arg0) throws Exception {
+        // ChannelPipleine line
 	}
 
 	@Override
 	public void disconnect() {
-		// TODO Auto-generated method stub
-
+		disconnect(null);
 	}
 
 	@Override
 	public void disconnect(Object attachment) {
-		// TODO Auto-generated method stub
+		if(_channel==null)
+			return;
+		ChannelFuture f=_channel.disconnect();
+		f.addListener(new ChannelFutureListener(){
+
+			@Override
+			public void operationComplete(ChannelFuture arg0) throws Exception {
+				// TODO Auto-generated method stub
+				
+			}});
 
 	}
 

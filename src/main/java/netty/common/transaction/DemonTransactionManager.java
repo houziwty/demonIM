@@ -9,4 +9,9 @@ public class DemonTransactionManager {
 		// TODO Auto-generated constructor stub
 	}
 
+	public void reset() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
