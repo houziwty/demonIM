@@ -5,6 +5,7 @@ import java.net.SocketAddress;
 
 
 
+import netty.common.handler.inboud.DemonConnectionInboundEventHandler;
 import netty.common.message.DemonMessage;
 import netty.common.message.DemonRequest;
 import netty.common.message.DemonResponse;
@@ -20,6 +21,7 @@ import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
+import io.netty.channel.ChannelPipeline;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
@@ -127,8 +129,9 @@ public class DefaultDemonDedicateConnection extends
 	}
 
 	@Override
-	protected void initChannel(SocketChannel arg0) throws Exception {
-        // ChannelPipleine line
+	protected void initChannel(SocketChannel sc) throws Exception {
+         ChannelPipeline line=sc.pipeline();
+         line.addLast(new DemonConnectionInboundEventHandler());
 	}
 
 	@Override
