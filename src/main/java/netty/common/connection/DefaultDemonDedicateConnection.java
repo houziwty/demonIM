@@ -3,10 +3,6 @@ package netty.common.connection;
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;
 
-
-
-
-
 import netty.common.handler.inboud.DemonConnectionInboundEventHandler;
 import netty.common.message.DemonMessage;
 import netty.common.message.DemonRequest;
@@ -132,8 +128,8 @@ public class DefaultDemonDedicateConnection extends
 
 	@Override
 	protected void initChannel(SocketChannel sc) throws Exception {
-         ChannelPipeline line=sc.pipeline();
-         line.addLast(new DemonConnectionInboundEventHandler());
+		ChannelPipeline line = sc.pipeline();
+		line.addLast(new DemonConnectionInboundEventHandler());
 	}
 
 	@Override
@@ -142,17 +138,18 @@ public class DefaultDemonDedicateConnection extends
 	}
 
 	@Override
-	public void disconnect(Object attachment) {
-		if(_channel==null)
+	public void disconnect(final Object attachment) {
+		if (_channel == null)
 			return;
-		ChannelFuture f=_channel.disconnect();
-		f.addListener(new ChannelFutureListener(){
+		ChannelFuture f = _channel.disconnect();
+		f.addListener(new ChannelFutureListener() {
 
 			@Override
 			public void operationComplete(ChannelFuture arg0) throws Exception {
 				// TODO Auto-generated method stub
-				
-			}});
+				processDisconnectionConnected(attachment);
+			}
+		});
 
 	}
 
@@ -169,15 +166,34 @@ public class DefaultDemonDedicateConnection extends
 	}
 
 	@Override
-	public void processSendMessage(DemonMessage msg, DemonTransaction trans) {
+	public void processSendMessage(final DemonMessage msg,
+			final DemonTransaction trans) {
 		// TODO Auto-generated method stub
+		if (_channel == null) {
+			trans.doSendRequestFailed();
+			return;
+		}
+		if (msg.isRequest())
+			_transMgr.addTransaction(trans);
+		ChannelFuture f = _channel.writeAndFlush(msg);
+		f.addListener(new ChannelFutureListener() {
 
+			@Override
+			public void operationComplete(ChannelFuture future)
+					throws Exception {
+				if (!future.isSuccess()) {
+					if (msg.isRequest())
+						_transMgr.removeTransaction(trans.getKey());
+					trans.doSendRequestFailed();
+				}
+			}
+		});
 	}
 
 	@Override
 	public void processReceiveRequest(DemonRequest req) {
-		// TODO Auto-generated method stub
-
+		DemonTransaction trans=_transMgr.createTransaction(req);
+		trans.setDemonConnection(this);
 	}
 
 	@Override

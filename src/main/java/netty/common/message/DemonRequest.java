@@ -43,5 +43,11 @@ public class DemonRequest extends DemonMessage implements Cloneable {
 		super.setMethod(method);
 	}
 
+	@Override
+	public boolean isRequest() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 
 }

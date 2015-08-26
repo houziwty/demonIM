@@ -37,6 +37,8 @@ public abstract class DemonMessage implements Serializable {
 		this._headers = new DemonLinkedList<DemonHeader>();
 		this._bodys = new DemonLinkedList<DemonBody>();
 	}
+	
+	public abstract boolean isRequest();
 
 	public void addBody(DemonBody body) {
 		if (body != null)

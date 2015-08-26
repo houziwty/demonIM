@@ -2,6 +2,7 @@ package netty.common.transaction;
 
 import java.util.concurrent.atomic.AtomicLong;
 
+import netty.common.connection.DemonDedicateConnection;
 import netty.common.message.DemonRequest;
 import netty.common.message.DemonResponse;
 import netty.common.tracer.DemonTracer;
@@ -34,6 +35,19 @@ public class DemonTransaction {
 	
 	DemonTransaction(DemonRequest request,boolean direction,DemonTransactionManager manager){
 		this(request);
+		
+	}
+	public void doSendRequestFailed() {
+		// TODO Auto-generated method stub
+		
+	}
+	public Object getKey() {
+		// TODO Auto-generated method stub
+		return _key;
+	}
+	public void setDemonConnection(
+			DemonDedicateConnection conn) {
+		// TODO Auto-generated method stub
 		
 	}
 }
