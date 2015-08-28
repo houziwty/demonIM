@@ -1,55 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e4d22bf0-009b-47f4-9f24-96a0807237ce" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/DemonNetty/App.class" afterPath="$PROJECT_DIR$/target/classes/DemonNetty/App.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/test-classes/DemonNetty/AppTest.class" afterPath="$PROJECT_DIR$/target/test-classes/DemonNetty/AppTest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/netty/common/message/BadMessageException.class" afterPath="$PROJECT_DIR$/target/classes/netty/common/message/BadMessageException.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/netty/common/cache/CacheClient.class" afterPath="$PROJECT_DIR$/target/classes/netty/common/cache/CacheClient.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/netty/common/service/ChildChannelHandler.class" afterPath="$PROJECT_DIR$/target/classes/netty/common/service/ChildChannelHandler.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/netty/common/connection/DefaultDemonDedicateConnection.class" afterPath="$PROJECT_DIR$/target/classes/netty/common/connection/DefaultDemonDedicateConnection.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/netty/common/message/DemonBody.class" afterPath="$PROJECT_DIR$/target/classes/netty/common/message/DemonBody.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/netty/common/connection/DemonDedicateConnection.class" afterPath="$PROJECT_DIR$/target/classes/netty/common/connection/DemonDedicateConnection.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/netty/common/connection/DemonDedicateConnectionEvent.class" afterPath="$PROJECT_DIR$/target/classes/netty/common/connection/DemonDedicateConnectionEvent.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/netty/common/connection/DemonDedicateConnectionProcessor.class" afterPath="$PROJECT_DIR$/target/classes/netty/common/connection/DemonDedicateConnectionProcessor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/netty/common/message/DemonHeader.class" afterPath="$PROJECT_DIR$/target/classes/netty/common/message/DemonHeader.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/netty/common/message/DemonHeaderType.class" afterPath="$PROJECT_DIR$/target/classes/netty/common/message/DemonHeaderType.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/netty/common/util/DemonLinkedList.class" afterPath="$PROJECT_DIR$/target/classes/netty/common/util/DemonLinkedList.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/netty/common/util/DemonLinkedNode.class" afterPath="$PROJECT_DIR$/target/classes/netty/common/util/DemonLinkedNode.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/netty/common/connection/DemonListener.class" afterPath="$PROJECT_DIR$/target/classes/netty/common/connection/DemonListener.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/netty/common/message/DemonMessage.class" afterPath="$PROJECT_DIR$/target/classes/netty/common/message/DemonMessage.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/netty/common/message/DemonMessageDecoder$ReadTimeoutTask.class" afterPath="$PROJECT_DIR$/target/classes/netty/common/message/DemonMessageDecoder$ReadTimeoutTask.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/netty/common/message/DemonMessageDecoder.class" afterPath="$PROJECT_DIR$/target/classes/netty/common/message/DemonMessageDecoder.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/netty/common/message/DemonMessageEncoder.class" afterPath="$PROJECT_DIR$/target/classes/netty/common/message/DemonMessageEncoder.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/netty/common/message/DemonMessageType.class" afterPath="$PROJECT_DIR$/target/classes/netty/common/message/DemonMessageType.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/netty/common/message/DemonNettyMessage$Type.class" afterPath="$PROJECT_DIR$/target/classes/netty/common/message/DemonNettyMessage$Type.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/netty/common/message/DemonNettyMessage.class" afterPath="$PROJECT_DIR$/target/classes/netty/common/message/DemonNettyMessage.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/netty/common/message/DemonRequest.class" afterPath="$PROJECT_DIR$/target/classes/netty/common/message/DemonRequest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/netty/common/message/DemonRequestMethod.class" afterPath="$PROJECT_DIR$/target/classes/netty/common/message/DemonRequestMethod.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/netty/common/message/DemonResponse.class" afterPath="$PROJECT_DIR$/target/classes/netty/common/message/DemonResponse.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/netty/common/message/DemonResponseCode.class" afterPath="$PROJECT_DIR$/target/classes/netty/common/message/DemonResponseCode.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/netty/common/service/DemonServer.class" afterPath="$PROJECT_DIR$/target/classes/netty/common/service/DemonServer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/netty/common/service/impl/DemonServerListenerImpl.class" afterPath="$PROJECT_DIR$/target/classes/netty/common/service/impl/DemonServerListenerImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/netty/common/service/impl/DemonSeverImpl.class" afterPath="$PROJECT_DIR$/target/classes/netty/common/service/impl/DemonSeverImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/netty/common/stack/DemonStack.class" afterPath="$PROJECT_DIR$/target/classes/netty/common/stack/DemonStack.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/netty/common/stack/DemonStackConfiguration.class" afterPath="$PROJECT_DIR$/target/classes/netty/common/stack/DemonStackConfiguration.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/netty/common/stack/DemonStackModel.class" afterPath="$PROJECT_DIR$/target/classes/netty/common/stack/DemonStackModel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/netty/common/tracer/DemonTracer.class" afterPath="$PROJECT_DIR$/target/classes/netty/common/tracer/DemonTracer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/netty/common/transaction/DemonTransaction.class" afterPath="$PROJECT_DIR$/target/classes/netty/common/transaction/DemonTransaction.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/netty/common/transaction/DemonTransactionCreateEvent.class" afterPath="$PROJECT_DIR$/target/classes/netty/common/transaction/DemonTransactionCreateEvent.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/netty/common/transaction/DemonTransactionEvent.class" afterPath="$PROJECT_DIR$/target/classes/netty/common/transaction/DemonTransactionEvent.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/netty/common/transaction/DemonTransactionManager.class" afterPath="$PROJECT_DIR$/target/classes/netty/common/transaction/DemonTransactionManager.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/netty/common/util/FormatUtil.class" afterPath="$PROJECT_DIR$/target/classes/netty/common/util/FormatUtil.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/netty/common/message/MessageInputStream.class" afterPath="$PROJECT_DIR$/target/classes/netty/common/message/MessageInputStream.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/netty/common/message/ReadDataTimeoutException.class" afterPath="$PROJECT_DIR$/target/classes/netty/common/message/ReadDataTimeoutException.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/netty/common/cache/redis/RedisClient.class" afterPath="$PROJECT_DIR$/target/classes/netty/common/cache/redis/RedisClient.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/netty/common/util/TextUtil$1.class" afterPath="$PROJECT_DIR$/target/classes/netty/common/util/TextUtil$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/netty/common/util/TextUtil$2.class" afterPath="$PROJECT_DIR$/target/classes/netty/common/util/TextUtil$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/netty/common/util/TextUtil.class" afterPath="$PROJECT_DIR$/target/classes/netty/common/util/TextUtil.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/netty/websocket/WebSocketServer$1.class" afterPath="$PROJECT_DIR$/target/classes/netty/websocket/WebSocketServer$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/netty/websocket/WebSocketServer.class" afterPath="$PROJECT_DIR$/target/classes/netty/websocket/WebSocketServer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/netty/websocket/WebSocketServerHandler.class" afterPath="$PROJECT_DIR$/target/classes/netty/websocket/WebSocketServerHandler.class" />
-    </list>
+    <list default="true" id="e4d22bf0-009b-47f4-9f24-96a0807237ce" name="Default" comment="" />
     <ignored path="DemonNetty.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -115,7 +67,7 @@
   <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1440" />
-    <option name="height" value="812" />
+    <option name="height" value="810" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -156,8 +108,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -169,6 +119,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -176,7 +128,7 @@
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../DemonMQ" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../WorkHLJ/mqcommon" />
     <property name="recentsLimit" value="5" />
     <property name="dynamic.classpath" value="false" />
     <property name="FullScreen" value="false" />
@@ -531,14 +483,15 @@
       <updated>1440215750547</updated>
       <workItem from="1440215752139" duration="1867000" />
       <workItem from="1440234546163" duration="345000" />
+      <workItem from="1440694179582" duration="65000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2212000" />
+    <option name="totallyTimeSpent" value="2277000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="812" extended-state="6" />
+    <frame x="0" y="23" width="1440" height="810" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -548,7 +501,6 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32928476" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24305555" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -557,14 +509,15 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32928476" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32928476" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -587,6 +540,14 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/java/netty/common/cache/CacheClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/netty/common/cache/CacheClient.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
