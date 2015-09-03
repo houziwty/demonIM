@@ -3,8 +3,13 @@ package netty.common.connection;
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;
 
+import netty.common.handler.codec.DemonDecoder;
+import netty.common.handler.codec.DemonEncoder;
 import netty.common.handler.inboud.DemonConnectionInboundEventHandler;
 import netty.common.handler.inboud.DemonHexTraceInboundEventHandler;
+import netty.common.handler.inboud.DemonSignallingTraceInboundHandler;
+import netty.common.handler.outboud.DemonHexTraceOutboundHandler;
+import netty.common.handler.outboud.DemonSignallingTraceOutboundHandler;
 import netty.common.message.DemonMessage;
 import netty.common.message.DemonRequest;
 import netty.common.message.DemonResponse;
@@ -130,6 +135,19 @@ public class DefaultDemonDedicateConnection extends
 		line.addLast(new DemonConnectionInboundEventHandler());
 		if(this.config.getEnableHexTracer())
 			line.addLast(new DemonHexTraceInboundEventHandler());
+		line.addLast(new DemonDecoder());
+		if(this.config.getEnableSignallingTracer())
+			line.addLast(new DemonSignallingTraceInboundHandler());
+		
+		line.addLast(new DemonTransactionHandler(this));
+		
+		if (this.config.getEnableHexTracer())
+			line.addLast(new DemonHexTraceOutboundHandler());
+		line.addLast(new DemonEncoder());
+		if (this.config.getEnableSignallingTracer())
+			line.addLast(new DemonSignallingTraceOutboundHandler());
+			
+			
 		
 	}
 

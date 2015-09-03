@@ -49,6 +49,11 @@ public class DemonStackConfiguration {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	public boolean getEnableSignallingTracer() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
 
 
