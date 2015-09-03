@@ -4,6 +4,7 @@ import java.net.InetSocketAddress;
 import java.net.SocketAddress;
 
 import netty.common.handler.inboud.DemonConnectionInboundEventHandler;
+import netty.common.handler.inboud.DemonHexTraceInboundEventHandler;
 import netty.common.message.DemonMessage;
 import netty.common.message.DemonRequest;
 import netty.common.message.DemonResponse;
@@ -31,74 +32,71 @@ public class DefaultDemonDedicateConnection extends
 	private static DemonTracer _tracer = DemonTracer
 			.getInstance(DefaultDemonDedicateConnection.class);
 
-	private String _key;
+	private String key;
 
-	private DemonStackConfiguration _config;
+	private DemonStackConfiguration config;
 
-	private DemonTransactionManager _transMgr;
+	private DemonTransactionManager transMgr;
 
-	private DemonDedicateConnectionEvent _connEvent;
+	private DemonDedicateConnectionEvent connEvent;
 
-	private DemonTransactionCreateEvent _createEvent;
+	private DemonTransactionCreateEvent createEvent;
 
-	private NioEventLoopGroup _group;
+	private NioEventLoopGroup group;
 
-	private Channel _channel;
+	private Channel channel;
 
 	public DefaultDemonDedicateConnection(String key,
 			DemonStackConfiguration config, NioEventLoopGroup group) {
-		_key = key;
-		_config = config;
-		_group = group;
-		_transMgr = new DemonTransactionManager(this);
+		this.key = key;
+		this.config = config;
+		this.group = group;
+		this.transMgr = new DemonTransactionManager(this);
 	}
 
 	@Override
 	public String getKey() {
 		// TODO Auto-generated method stub
-		return _key;
+		return this.key;
 	}
 
 	@Override
 	public void registerDemonConnectionEvent(DemonDedicateConnectionEvent event) {
-		if (_config.getModel() != DemonStackModel.Dedicate)
+		if (this.config.getModel() != DemonStackModel.Dedicate)
 			throw new UnsupportedOperationException(
 					"The stack's mode MUST be Dedicate.");
-		_connEvent = event;
+		this.connEvent = event;
 	}
 
 	@Override
 	public void registerDemonTransactionCreated(
 			DemonTransactionCreateEvent event) {
-		if (_config.getModel() != DemonStackModel.Dedicate)
+		if (config.getModel() != DemonStackModel.Dedicate)
 			throw new UnsupportedOperationException(
 					"The stack's mode MUST be Dedicate.");
-		_createEvent = event;
+		this.createEvent = event;
 	}
 
 	@Override
 	public void connect(String ip, int port) {
 		// TODO Auto-generated method stub
-		connect(new InetSocketAddress(ip, port));
+		this.connect(new InetSocketAddress(ip, port));
 	}
 
 	@Override
 	public void connect(SocketAddress address) {
 		// TODO Auto-generated method stub
-		connect(address, null);
+		this.connect(address, null);
 	}
 
 	@Override
 	public void connect(SocketAddress address, final Object attachment) {
 		// TODO Auto-generated method stub
 		Bootstrap b = new Bootstrap();
-		b.group(_group);
-		b.channel(NioSocketChannel.class);
-		b.handler(this);
-		b.option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 60 * 1000);
+		b.group(group).channel(NioSocketChannel.class).handler(this)
+				.option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 60 * 1000);
 		ChannelFuture f = b.connect(address);
 		f.addListener(new ChannelFutureListener() {
-
 			@Override
 			public void operationComplete(ChannelFuture future)
 					throws Exception {
@@ -114,22 +112,25 @@ public class DefaultDemonDedicateConnection extends
 
 	// 处理连接
 	protected void processConnectionConnected(Channel channel, Object attachment) {
-		_channel = channel;
-		if (_connEvent != null)
-			_connEvent.onConnected(this, attachment);
+		channel = channel;
+		if (connEvent != null)
+			connEvent.onConnected(this, attachment);
 	}
 
 	protected void processDisconnectionConnected(Object attachment) {
-		if (_connEvent != null)
-			_connEvent.onDisconnected(this, attachment);
-		_transMgr.reset();
-		_channel = null;
+		if (connEvent != null)
+			connEvent.onDisconnected(this, attachment);
+		transMgr.reset();
+		channel = null;
 	}
 
 	@Override
 	protected void initChannel(SocketChannel sc) throws Exception {
 		ChannelPipeline line = sc.pipeline();
 		line.addLast(new DemonConnectionInboundEventHandler());
+		if(this.config.getEnableHexTracer())
+			line.addLast(new DemonHexTraceInboundEventHandler());
+		
 	}
 
 	@Override
@@ -139,9 +140,9 @@ public class DefaultDemonDedicateConnection extends
 
 	@Override
 	public void disconnect(final Object attachment) {
-		if (_channel == null)
+		if (channel == null)
 			return;
-		ChannelFuture f = _channel.disconnect();
+		ChannelFuture f = channel.disconnect();
 		f.addListener(new ChannelFutureListener() {
 
 			@Override
@@ -169,13 +170,13 @@ public class DefaultDemonDedicateConnection extends
 	public void processSendMessage(final DemonMessage msg,
 			final DemonTransaction trans) {
 		// TODO Auto-generated method stub
-		if (_channel == null) {
+		if (channel == null) {
 			trans.doSendRequestFailed();
 			return;
 		}
 		if (msg.isRequest())
-			_transMgr.addTransaction(trans);
-		ChannelFuture f = _channel.writeAndFlush(msg);
+			transMgr.addTransaction(trans);
+		ChannelFuture f = channel.writeAndFlush(msg);
 		f.addListener(new ChannelFutureListener() {
 
 			@Override
@@ -183,7 +184,7 @@ public class DefaultDemonDedicateConnection extends
 					throws Exception {
 				if (!future.isSuccess()) {
 					if (msg.isRequest())
-						_transMgr.removeTransaction(trans.getKey());
+						transMgr.removeTransaction(trans.getKey());
 					trans.doSendRequestFailed();
 				}
 			}
@@ -192,7 +193,7 @@ public class DefaultDemonDedicateConnection extends
 
 	@Override
 	public void processReceiveRequest(DemonRequest req) {
-		DemonTransaction trans=_transMgr.createTransaction(req);
+		DemonTransaction trans = transMgr.createTransaction(req);
 		trans.setDemonConnection(this);
 	}
 

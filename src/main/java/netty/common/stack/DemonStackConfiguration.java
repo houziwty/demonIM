@@ -44,6 +44,11 @@ public class DemonStackConfiguration {
 	public void setWorkThreadCount(int workThreadCount) {
 		this.workThreadCount = workThreadCount;
 	}
+
+	public boolean getEnableHexTracer() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
 
 
