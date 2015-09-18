@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import netty.common.cache.CacheClient;
 
+import netty.common.cache.CacheClient;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
@@ -42,6 +42,7 @@ public class RedisClient implements CacheClient {
 
 	
 	}
+
 	
 	static {
 		config=new JedisPoolConfig();
