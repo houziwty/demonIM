@@ -176,8 +176,7 @@ public class DefaultDemonDedicateConnection extends
 		return null;
 	}
 
-	
-	///进程发送消息
+	// /进程发送消息
 	@Override
 	public void processSendMessage(final DemonMessage msg,
 			final DemonTransaction trans) {
@@ -206,14 +205,18 @@ public class DefaultDemonDedicateConnection extends
 	public void processReceiveRequest(DemonRequest req) {
 		DemonTransaction trans = transMgr.createTransaction(req);
 		trans.setDemonConnection(this);
-		if(createEvent!=null)
+		if (createEvent != null)
 			createEvent.onTransactionCreated(trans);
 	}
 
 	@Override
 	public void processReceiveResponse(DemonResponse resp) {
-		// TODO Auto-generated method stub
-
+		String key = resp.getKey(true);
+		DemonTransaction trans = transMgr.getTransaction(key);
+		if (trans == null)
+			return;
+		transMgr.removeTransaction(key);
+		if (trans != null)
+			trans.receiveResponse(resp);
 	}
-
 }

@@ -50,4 +50,8 @@ public class DemonTransaction {
 		// TODO Auto-generated method stub
 		
 	}
+	public void receiveResponse(DemonResponse resp) {
+		// TODO Auto-generated method stub
+		
+	}
 }

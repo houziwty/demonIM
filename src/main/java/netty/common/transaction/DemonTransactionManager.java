@@ -30,4 +30,9 @@ public class DemonTransactionManager {
 		return null;
 	}
 
+	public DemonTransaction getTransaction(String key) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
