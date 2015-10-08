@@ -61,7 +61,6 @@ public class DefaultDemonDedicateConnection extends
 
 	@Override
 	public String getKey() {
-		// TODO Auto-generated method stub
 		return this.key;
 	}
 
@@ -84,19 +83,16 @@ public class DefaultDemonDedicateConnection extends
 
 	@Override
 	public void connect(String ip, int port) {
-		// TODO Auto-generated method stub
 		this.connect(new InetSocketAddress(ip, port));
 	}
 
 	@Override
 	public void connect(SocketAddress address) {
-		// TODO Auto-generated method stub
 		this.connect(address, null);
 	}
 
 	@Override
 	public void connect(SocketAddress address, final Object attachment) {
-		// TODO Auto-generated method stub
 		Bootstrap b = new Bootstrap();
 		b.group(group).channel(NioSocketChannel.class).handler(this)
 				.option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 60 * 1000);
@@ -133,22 +129,20 @@ public class DefaultDemonDedicateConnection extends
 	protected void initChannel(SocketChannel sc) throws Exception {
 		ChannelPipeline line = sc.pipeline();
 		line.addLast(new DemonConnectionInboundEventHandler());
-		if(this.config.getEnableHexTracer())
+		if (this.config.getEnableHexTracer())
 			line.addLast(new DemonHexTraceInboundEventHandler());
 		line.addLast(new DemonDecoder());
-		if(this.config.getEnableSignallingTracer())
+		if (this.config.getEnableSignallingTracer())
 			line.addLast(new DemonSignallingTraceInboundHandler());
-		
+
 		line.addLast(new DemonTransactionHandler(this));
-		
+
 		if (this.config.getEnableHexTracer())
 			line.addLast(new DemonHexTraceOutboundHandler());
 		line.addLast(new DemonEncoder());
 		if (this.config.getEnableSignallingTracer())
 			line.addLast(new DemonSignallingTraceOutboundHandler());
-			
-			
-		
+
 	}
 
 	@Override
@@ -165,7 +159,6 @@ public class DefaultDemonDedicateConnection extends
 
 			@Override
 			public void operationComplete(ChannelFuture arg0) throws Exception {
-				// TODO Auto-generated method stub
 				processDisconnectionConnected(attachment);
 			}
 		});
@@ -174,7 +167,6 @@ public class DefaultDemonDedicateConnection extends
 
 	@Override
 	public DemonTransaction createTransaction(DemonRequest req) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -184,10 +176,11 @@ public class DefaultDemonDedicateConnection extends
 		return null;
 	}
 
+	
+	///进程发送消息
 	@Override
 	public void processSendMessage(final DemonMessage msg,
 			final DemonTransaction trans) {
-		// TODO Auto-generated method stub
 		if (channel == null) {
 			trans.doSendRequestFailed();
 			return;
@@ -213,6 +206,8 @@ public class DefaultDemonDedicateConnection extends
 	public void processReceiveRequest(DemonRequest req) {
 		DemonTransaction trans = transMgr.createTransaction(req);
 		trans.setDemonConnection(this);
+		if(createEvent!=null)
+			createEvent.onTransactionCreated(trans);
 	}
 
 	@Override
