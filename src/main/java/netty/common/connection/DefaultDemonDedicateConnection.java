@@ -165,6 +165,7 @@ public class DefaultDemonDedicateConnection extends
 
 	}
 
+	//创建事物
 	@Override
 	public DemonTransaction createTransaction(DemonRequest req) {
 		DemonTransaction trans=transMgr.createTransaction(req);
