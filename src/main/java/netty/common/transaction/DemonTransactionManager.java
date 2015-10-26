@@ -35,4 +35,9 @@ public class DemonTransactionManager {
 		return null;
 	}
 
+	public DemonTransaction createTransaction(DemonRequest req, int timeout) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

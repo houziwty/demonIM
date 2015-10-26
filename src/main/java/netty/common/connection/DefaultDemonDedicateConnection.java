@@ -167,13 +167,16 @@ public class DefaultDemonDedicateConnection extends
 
 	@Override
 	public DemonTransaction createTransaction(DemonRequest req) {
-		return null;
+		DemonTransaction trans=transMgr.createTransaction(req);
+		trans.setDemonConnection(this);
+		return trans;
 	}
 
 	@Override
 	public DemonTransaction createTransaction(DemonRequest req, int timeout) {
-		// TODO Auto-generated method stub
-		return null;
+		DemonTransaction trans=transMgr.createTransaction(req,timeout);
+		trans.setDemonConnection(this);
+		return trans;
 	}
 
 	// /进程发送消息
