@@ -36,7 +36,6 @@ public class WebSocketServerHandler extends SimpleChannelInboundHandler<Object>
 	@Override
 	protected void messageReceived(ChannelHandlerContext ctx, Object msg)
 			throws Exception {
-		// TODO Auto-generated method stub
 		if (msg instanceof FullHttpRequest) {
 			handleHttpRequest(ctx, (FullHttpRequest) msg);
 		} else if (msg instanceof WebSocketFrame) {
@@ -116,12 +115,10 @@ public class WebSocketServerHandler extends SimpleChannelInboundHandler<Object>
 	}
 
 	private static boolean isKeppAlive(FullHttpRequest req) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	private static void setContentLength(FullHttpResponse res, int readableBytes) {
-		// TODO Auto-generated method stub
 
 	}
 

@@ -12,7 +12,6 @@ public class DemonListener extends ChannelInitializer<SocketChannel> {
 
 	@Override
 	protected void initChannel(SocketChannel sock) throws Exception {
-		// TODO Auto-generated method stub
 		
 	}
 

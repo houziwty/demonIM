@@ -34,7 +34,7 @@ public class DefaultDemonDedicateConnection extends
 		ChannelInitializer<SocketChannel> implements DemonDedicateConnection,
 		DemonDedicateConnectionProcessor {
 
-	private static DemonTracer _tracer = DemonTracer
+	private static DemonTracer tracer = DemonTracer
 			.getInstance(DefaultDemonDedicateConnection.class);
 
 	private String key;

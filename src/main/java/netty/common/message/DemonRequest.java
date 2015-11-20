@@ -11,7 +11,6 @@ public class DemonRequest extends DemonMessage implements Cloneable {
 
 	public DemonRequest(byte method) {
 		super(method);
-		// TODO Auto-generated constructor stub
 	}
 
 	public byte getMethod() {
@@ -45,7 +44,6 @@ public class DemonRequest extends DemonMessage implements Cloneable {
 
 	@Override
 	public boolean isRequest() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 

@@ -9,8 +9,8 @@ public interface DemonDedicateConnectionProcessor {
 	
 	void processSendMessage(DemonMessage msg,final DemonTransaction trans);
 	
-	void processReceiveRequest(DemonRequest req);
+	void processReceiveRequest(DemonRequest msg);
 	
-	void processReceiveResponse(DemonResponse resp);
+	void processReceiveResponse(DemonResponse msg);
 
 }
