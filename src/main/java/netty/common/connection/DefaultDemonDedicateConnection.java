@@ -3,6 +3,7 @@ package netty.common.connection;
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;
 
+import netty.common.handler.DemonTransactionHandler;
 import netty.common.handler.codec.DemonDecoder;
 import netty.common.handler.codec.DemonEncoder;
 import netty.common.handler.inboud.DemonConnectionInboundEventHandler;
@@ -113,16 +114,16 @@ public class DefaultDemonDedicateConnection extends
 
 	// 处理连接
 	protected void processConnectionConnected(Channel channel, Object attachment) {
-		channel = channel;
-		if (connEvent != null)
-			connEvent.onConnected(this, attachment);
+		this.channel=channel;
+		if (this.connEvent != null)
+			this.connEvent.onConnected(this, attachment);
 	}
 
 	protected void processDisconnectionConnected(Object attachment) {
-		if (connEvent != null)
-			connEvent.onDisconnected(this, attachment);
+		if (this.connEvent != null)
+			this.connEvent.onDisconnected(this, attachment);
 		transMgr.reset();
-		channel = null;
+		this.channel = null;
 	}
 
 	@Override
@@ -152,11 +153,10 @@ public class DefaultDemonDedicateConnection extends
 
 	@Override
 	public void disconnect(final Object attachment) {
-		if (channel == null)
+		if (this.channel == null)
 			return;
-		ChannelFuture f = channel.disconnect();
+		ChannelFuture f = this.channel.disconnect();
 		f.addListener(new ChannelFutureListener() {
-
 			@Override
 			public void operationComplete(ChannelFuture arg0) throws Exception {
 				processDisconnectionConnected(attachment);

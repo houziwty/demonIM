@@ -3,6 +3,7 @@ package netty.common.handler.inboud;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 
+@SuppressWarnings("deprecation")
 public class DemonInboundHandler extends ChannelInboundHandlerAdapter {
 	@Override
 	public void exceptionCaught(ChannelHandlerContext arg0, Throwable arg1)

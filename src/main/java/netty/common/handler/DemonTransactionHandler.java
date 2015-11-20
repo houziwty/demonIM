@@ -1,5 +1,6 @@
-package netty.common.connection;
+package netty.common.handler;
 
+import netty.common.connection.DemonDedicateConnectionProcessor;
 import netty.common.message.DemonMessage;
 import netty.common.message.DemonRequest;
 import netty.common.message.DemonResponse;
