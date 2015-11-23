@@ -91,7 +91,6 @@ public class RedisClient implements CacheClient {
 
 	@Override
 	public void del(String... keys) {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -169,7 +168,6 @@ public class RedisClient implements CacheClient {
 
 	@Override
 	public Set<String> keys(String pattern) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
