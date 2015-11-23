@@ -11,7 +11,6 @@ public class DemonHandler implements ChannelHandler {
 	@Override
 	public void bind(ChannelHandlerContext arg0, SocketAddress arg1,
 			ChannelPromise arg2) throws Exception {
-		// TODO Auto-generated method stub
 
 	}
 
