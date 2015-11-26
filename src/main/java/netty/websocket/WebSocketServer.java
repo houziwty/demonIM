@@ -27,7 +27,6 @@ public class WebSocketServer {
 
 						protected void initChannel(SocketChannel ch)
 								throws Exception {
-							// TODO Auto-generated method stub
 							ChannelPipeline pipeline = ch.pipeline();
 							pipeline.addLast("http-codec",
 								   new HttpServerCodec());
