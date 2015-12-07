@@ -2,6 +2,6 @@ package netty.common.service.impl;
 
 import io.netty.channel.ChannelHandlerContext;
 
-public interface DemonServerListenerImpl {
+public interface IDemonServerListener {
 	void create(ChannelHandlerContext ctx) throws Exception;
 }
