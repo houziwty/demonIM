@@ -30,6 +30,7 @@ public class DemonServer implements IDemonSever {
 					protected void initChannel(SocketChannel ch)
 							throws Exception {
 						ChannelPipeline pipeline = ch.pipeline();
+						pipeline.addLast(null);
 					}
 
 				});
