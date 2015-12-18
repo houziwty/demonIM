@@ -46,7 +46,6 @@ public class DemonResponse extends DemonMessage implements Cloneable {
 
 	@Override
 	public boolean isRequest() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 

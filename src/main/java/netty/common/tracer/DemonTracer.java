@@ -1,7 +1,6 @@
 package netty.common.tracer;
 
 import netty.common.message.DemonMessage;
-import netty.common.transaction.DemonTransaction;
 
 import org.apache.log4j.PropertyConfigurator;
 

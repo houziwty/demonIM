@@ -28,7 +28,6 @@ public class DemonStack {
 	}
 
 	public DemonStack(DemonStackConfiguration config) {
-		// TODO Auto-generated constructor stub
 		_config=config;
 		_connections=new ConcurrentHashMap<String, DemonDedicateConnection>();
 		if(config.getWorkThreadCount()==0)
