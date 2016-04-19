@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e4d22bf0-009b-47f4-9f24-96a0807237ce" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/netty/common/handler/outboud/DemonOutboundHandler.class" afterPath="$PROJECT_DIR$/target/classes/netty/common/handler/outboud/DemonOutboundHandler.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/netty/common/handler/inboud/DemonSignallingTraceInboundHandler.class" afterPath="$PROJECT_DIR$/target/classes/netty/common/handler/inboud/DemonSignallingTraceInboundHandler.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/netty/common/handler/outboud/DemonOutboundHandler.java" afterPath="$PROJECT_DIR$/src/main/java/netty/common/handler/outboud/DemonOutboundHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/netty/common/handler/inboud/DemonSignallingTraceInboundHandler.java" afterPath="$PROJECT_DIR$/src/main/java/netty/common/handler/inboud/DemonSignallingTraceInboundHandler.java" />
-    </list>
+    <list default="true" id="e4d22bf0-009b-47f4-9f24-96a0807237ce" name="Default" comment="" />
     <ignored path="DemonNetty.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -62,7 +57,7 @@
   <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1440" />
-    <option name="height" value="797" />
+    <option name="height" value="813" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -103,6 +98,8 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -114,8 +111,6 @@
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -481,14 +476,15 @@
       <workItem from="1440694179582" duration="65000" />
       <workItem from="1448008740542" duration="1041000" />
       <workItem from="1448525477804" duration="92000" />
+      <workItem from="1454314233850" duration="4000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3410000" />
+    <option name="totallyTimeSpent" value="3414000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="797" extended-state="6" />
+    <frame x="0" y="23" width="1440" height="813" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />

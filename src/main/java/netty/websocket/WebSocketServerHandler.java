@@ -33,15 +33,17 @@ public class WebSocketServerHandler extends SimpleChannelInboundHandler<Object>
 	private static ConcurrentHashMap<String, ChannelHandlerContext> map =
 			new ConcurrentHashMap<String, ChannelHandlerContext>();
 
-	@Override
-	protected void messageReceived(ChannelHandlerContext ctx, Object msg)
-			throws Exception {
-		if (msg instanceof FullHttpRequest) {
-			handleHttpRequest(ctx, (FullHttpRequest) msg);
-		} else if (msg instanceof WebSocketFrame) {
-			handleWebSocketFrame(ctx, (WebSocketFrame) msg);
-		}
-	}
+	
+	
+//	@Override
+//	protected void messageReceived(ChannelHandlerContext ctx, Object msg)
+//			throws Exception {
+//		if (msg instanceof FullHttpRequest) {
+//			handleHttpRequest(ctx, (FullHttpRequest) msg);
+//		} else if (msg instanceof WebSocketFrame) {
+//			handleWebSocketFrame(ctx, (WebSocketFrame) msg);
+//		}
+//	}
 
 	public void channelReadComplete(ChannelHandlerContext ctx) {
 		ctx.flush();
@@ -120,6 +122,13 @@ public class WebSocketServerHandler extends SimpleChannelInboundHandler<Object>
 
 	private static void setContentLength(FullHttpResponse res, int readableBytes) {
 
+	}
+
+	@Override
+	protected void channelRead0(ChannelHandlerContext ctx, Object msg)
+			throws Exception {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

@@ -149,6 +149,8 @@ public interface CacheClient {
 	Long zrank(byte[] key, byte[] member);
 
 	Long zrevrank(byte[] key, byte[] member);
+	
+	Long lpush(String key, Object[] objs);
 
 	
 	
