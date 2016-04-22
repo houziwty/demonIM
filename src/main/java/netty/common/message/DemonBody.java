@@ -3,6 +3,11 @@ package netty.common.message;
 import netty.common.util.DemonLinkedNode;
 
 public class DemonBody extends DemonHeader {
+	/** 
+	* @Fields serialVersionUID : TODO
+	*/
+	private static final long serialVersionUID = -2227366637373373753L;
+	
 	DemonLinkedNode<DemonBody> Node;
 
 	public DemonBody() {

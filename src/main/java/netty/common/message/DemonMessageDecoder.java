@@ -93,7 +93,6 @@ public class DemonMessageDecoder extends ByteToMessageDecoder {
 	}
 
 	private void close(ChannelHandlerContext ctx) {
-		// TODO Auto-generated method stub
 		if (timeout != null) {
 			timeout.cancel(false);
 			timeout = null;

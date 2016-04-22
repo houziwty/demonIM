@@ -26,7 +26,7 @@ import io.netty.handler.codec.http.websocketx.WebSocketServerHandshakerFactory;
 import io.netty.util.CharsetUtil;
 
 public class WebSocketServerHandler extends SimpleChannelInboundHandler<Object>
-		implements ChannelHandler {
+		 {
 	private static final Logger logger = Logger
 			.getLogger(WebSocketServerHandler.class.getName());
 	private WebSocketServerHandshaker handshaker;
@@ -127,7 +127,6 @@ public class WebSocketServerHandler extends SimpleChannelInboundHandler<Object>
 	@Override
 	protected void channelRead0(ChannelHandlerContext ctx, Object msg)
 			throws Exception {
-		// TODO Auto-generated method stub
 		
 	}
 

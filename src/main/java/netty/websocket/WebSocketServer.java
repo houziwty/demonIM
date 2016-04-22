@@ -58,7 +58,6 @@ public class WebSocketServer {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		int port = 8080;
 		if (args.length > 0) {
 			try {
