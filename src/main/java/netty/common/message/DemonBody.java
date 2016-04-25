@@ -1,5 +1,6 @@
 package netty.common.message;
 
+import io.netty.buffer.Unpooled;
 import netty.common.util.DemonLinkedNode;
 
 public class DemonBody extends DemonHeader {
@@ -28,7 +29,7 @@ public class DemonBody extends DemonHeader {
 		} else if (value.length > 0xffff) {
 			this.value = null;
 		} else {
-			this.value = value;
+			this.value = Unpooled.copiedBuffer(value);
 		}
 	}
 

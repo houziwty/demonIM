@@ -1,11 +1,12 @@
 package netty.common.message;
 
 import io.netty.buffer.ByteBuf;
+import io.netty.buffer.ByteBufUtil;
+import io.netty.buffer.Unpooled;
 
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
-
 import java.nio.charset.Charset;
 
 import netty.common.util.DemonLinkedNode;
@@ -92,24 +93,21 @@ public class DemonHeader implements Cloneable, Serializable {
 
 	public String getString() {
 		if (this.getValueLength() > 0) {
-			try {
-				return new String(value, "UTF-8");
-			} catch (UnsupportedEncodingException e) {
-				return TextUtil.EmptyString;
-			}
+			return value.toString(DEFAULT_CHARSET);
 		} else {
 			return TextUtil.EmptyString;
 		}
 	}
 
 	public String getHexString() {
-		StringBuffer sb = new StringBuffer();
-		if (getValueLength() > 0) {
-			for (byte b : value) {
-				sb.append(String.format("%02X", b));
-			}
-		}
-		return sb.toString();
+//		StringBuffer sb = new StringBuffer();
+//		if (getValueLength() > 0) {
+//			for (byte b : value) {
+//				sb.append(String.format("%02X", b));
+//			}
+//		}
+//		return sb.toString();
+		return this.value==null?"":ByteBufUtil.hexDump(this.value);
 	}
 
 	public boolean isNotNullValue() {
@@ -140,19 +138,20 @@ public class DemonHeader implements Cloneable, Serializable {
 		if (value != null && value.length > 255) {
 			this.value = null;
 		} else {
-			this.value = value;
+			this.value =Unpooled.copiedBuffer(value);
 		}
 	}
 
 	public void setString(String value) {
-		try {
-			if (value == null)
-				this.setValue(TextUtil.EmptyString.getBytes("UTF-8"));
-			else
-				this.setValue(value.getBytes("UTF-8"));
-		} catch (UnsupportedEncodingException e) {
-			this.value = null;
-		}
+//		try {
+//			if (value == null)
+//				this.setValue(TextUtil.EmptyString.getBytes("UTF-8"));
+//			else
+//				this.setValue(value.getBytes("UTF-8"));
+//		} catch (UnsupportedEncodingException e) {
+//			this.value = null;
+//		}
+		this.value = Unpooled.wrappedBuffer(value.getBytes(DEFAULT_CHARSET));
 	}
 
 	public void setInt64(long value) {
@@ -174,20 +173,39 @@ public class DemonHeader implements Cloneable, Serializable {
 	}
 
 	public byte[] getValue() {
-		return value;
+		return value == null ? null : value.array();
+	}
+	public ByteBuf getBuf() {
+		return this.value;
 	}
 
 	public int getValueLength() {
-		if (value == null)
+		if (value == null){
 			return 0;
-		else
-			return value.length;
+		}
+		else{
+			value.resetReaderIndex();
+			return value.readableBytes();
+		}
 	}
 
 	@Override
 	public DemonHeader clone() {
 		return new DemonHeader(this.type, this.value == null ? null
-				: this.value.clone());
+				: this.value.copy());
+	}
+	
+	@Override
+	public boolean equals(Object obj){
+		if(!(obj instanceof DemonHeader))
+			return false;
+		DemonHeader header=(DemonHeader)obj;
+		if(header.getType()!=type)
+			return false;
+		if(header.getBuf()==null&&header.getBuf()!=null){
+			return false;
+		}
+		return this.value.compareTo(header.value)==0;
 	}
 
 }
