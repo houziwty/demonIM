@@ -36,7 +36,35 @@ public class DemonTransaction {
 		
 	}
 	
+	public DemonDedicateConnectionProcessor getConn() {
+		return conn;
+	}
+
+	public DemonRequest getRequest() {
+		return request;
+	}
+
+	public void setRequest(DemonRequest request) {
+		this.request = request;
+	}
+
+	public void setConn(DemonDedicateConnectionProcessor conn) {
+		this.conn = conn;
+	}
+
+	public int getTimeout() {
+		return timeout;
+	}
+
+	public String getKey(){
+		return request.getKey();
+	}
 	
+	
+	public void setTimeout(int timeout) {
+		this.timeout = timeout;
+	}
+
 	public void doSendRequestFailed() {
 		
 	}
