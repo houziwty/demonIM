@@ -65,15 +65,65 @@ public abstract class DemonMessage implements Serializable {
 		}
 	}
 
-	public LinkedBlockingQueue<DemonHeader>getHeaderQueue(){
+	public LinkedBlockingQueue<DemonHeader> getHeaderQueue() {
 		return this.headers;
 	}
-	
-	public LinkedBlockingQueue<DemonBody>getBodyQueue(){
+
+	public LinkedBlockingQueue<DemonBody> getBodyQueue() {
 		return this.bodys;
 	}
-	public void addHeader(DemonHeader header) {
 
+	public void addHeader(byte type, long value) {
+		addHeader(new DemonHeader(type, value));
+	}
+
+	public void addHeader(byte type, String value) {
+		addHeader(new DemonHeader(type, value));
+	}
+
+	public void addHeader(byte type, byte[] value) {
+		addHeader(new DemonHeader(type, value));
+	}
+
+	public void addHeader(DemonHeader header) {
+		if (header != null) {
+			switch (header.getType()) {
+			case DemonHeaderType.From: {
+				this.headers.add(header);
+				this.From = header;
+			}
+				break;
+			case DemonHeaderType.To: {
+				this.headers.add(header);
+				this.To = header;
+			}
+				break;
+			case DemonHeaderType.CallId: {
+				this.headers.add(header);
+				this.CallId = header;
+			}
+				break;
+			case DemonHeaderType.Fpid: {
+				this.headers.add(header);
+				this.Fpid = header;
+			}
+				break;
+			case DemonHeaderType.Tpid: {
+				this.headers.add(header);
+				this.Tpid = header;
+			}
+				break;
+			case DemonHeaderType.Event: {
+				this.headers.add(header);
+				this.Event = header;
+			}
+				break;
+			default: {
+				this.headers.add(header);
+			}
+				break;
+			}
+		}
 	}
 
 	public DemonTransaction get_parentTrans() {
@@ -86,8 +136,7 @@ public abstract class DemonMessage implements Serializable {
 
 	public synchronized DemonBody getBody() {
 		try {
-			bodys.moveToHead();
-			return bodys.get().obj();
+			return bodys.peek();
 		} catch (Exception e) {
 			return null;
 		}
@@ -95,41 +144,30 @@ public abstract class DemonMessage implements Serializable {
 
 	public synchronized ArrayList<DemonBody> getBodys() {
 		ArrayList<DemonBody> ret = new ArrayList<DemonBody>();
-		bodys.moveToHead();
-		DemonLinkedNode<DemonBody> bodyNode = null;
-		while ((bodyNode = bodys.get()) != null) {
-			ret.add(bodyNode.obj());
-		}
+		ret.addAll(bodys);
 		return ret;
 	}
 
 	public synchronized DemonHeader getHeader(byte headerType) {
-		headers.moveToHead();
-		DemonLinkedNode<DemonHeader> _headerNode = null;
-		while ((_headerNode = headers.get()) != null) {
-			if (_headerNode.obj().isTypeOf(headerType))
-				return _headerNode.obj();
+		for (DemonHeader header : headers) {
+			if (header.isTypeOf(headerType))
+				return header;
 		}
 		return null;
 	}
 
 	public synchronized ArrayList<DemonHeader> getHeaders() {
 		ArrayList<DemonHeader> ret = new ArrayList<DemonHeader>();
-		headers.moveToHead();
-		DemonLinkedNode<DemonHeader> _headerNode = null;
-		while ((_headerNode = headers.get()) != null) {
-			ret.add(_headerNode.obj());
-		}
+		ret.addAll(headers);
 		return ret;
 	}
 
 	public synchronized ArrayList<DemonHeader> getHeaders(byte headerType) {
 		ArrayList<DemonHeader> ret = new ArrayList<DemonHeader>();
-		headers.moveToHead();
-		DemonLinkedNode<DemonHeader> _headerNode = null;
-		while ((_headerNode = headers.get()) != null) {
-			if (_headerNode.obj().isTypeOf(headerType))
-				ret.add(_headerNode.obj());
+		for (DemonHeader header : headers) {
+			if (header.isTypeOf(headerType)) {
+				ret.add(header);
+			}
 		}
 		return ret;
 	}
@@ -147,24 +185,28 @@ public abstract class DemonMessage implements Serializable {
 			}
 			sb.append("-");
 		}
-		sb.append(diretion);
+		sb.append(sb.length() - 1);
 		return sb.toString();
 	}
 
-	public DemonMessageType getMessageType() {
-		return _messageType;
+	public byte getMethodValue() {
+		return method;
 	}
 
-	public byte getMethodValue() {
-		return _method;
+	public void setMethod(byte value) {
+		method = value;
+	}
+
+	public DemonMessageType getMessageType() {
+		return messageType;
 	}
 
 	public boolean isMessageType(DemonMessageType messageType) {
-		return this._messageType == messageType;
+		return this.messageType == messageType;
 	}
 
 	public boolean isMethod(byte method) {
-		return this._method == method;
+		return this.method == method;
 	}
 
 	public boolean isEvent(byte evnet) {
@@ -185,44 +227,38 @@ public abstract class DemonMessage implements Serializable {
 
 		switch (header.getType()) {
 		case DemonHeaderType.From: {
-			this.headers.remove(header.Node);
 			From = null;
 		}
 			break;
 		case DemonHeaderType.To: {
-			this.headers.remove(header.Node);
 			To = null;
 		}
 			break;
 		case DemonHeaderType.Fpid: {
-			this.headers.remove(header.Node);
 			Fpid = null;
 		}
 			break;
 		case DemonHeaderType.Tpid: {
-			this.headers.remove(header.Node);
 			Tpid = null;
 		}
 			break;
 		case DemonHeaderType.CallId: {
-			this.headers.remove(header.Node);
 			CallId = null;
 		}
 			break;
 		case DemonHeaderType.Csequence: {
-			this.headers.remove(header.Node);
 			Csequence = null;
 		}
 			break;
 		case DemonHeaderType.Event: {
-			this.headers.remove(header.Node);
 			Event = null;
 		}
 		default: {
-			this.headers.remove(header.Node);
-		}
 			break;
 		}
+
+		}
+		headers.remove(header);
 	}
 
 	public void removeHeaders(byte headerType) {
@@ -231,13 +267,8 @@ public abstract class DemonMessage implements Serializable {
 			removeHeader(header);
 		}
 	}
-
 	public synchronized void releaseBodys() {
-		bodys.moveToHead();
-		DemonLinkedNode<DemonBody> bodyNode = null;
-		while ((bodyNode = bodys.get()) != null) {
-			bodys.remove(bodyNode);
-		}
+		bodys.clear();
 	}
 
 	public boolean containsHeader(byte typebyte) {
@@ -308,16 +339,13 @@ public abstract class DemonMessage implements Serializable {
 
 	public String toString(boolean printBody) {
 		StringBuffer sb = new StringBuffer();
-		sb.append("This message is: ");
-		sb.append(this.getMessageType());
-		sb.append("\r\n");
-		if (this.isMessageType(DemonMessageType.Request)) {
+		if(isRequest()){
 			sb.append("Method:");
-			sb.append(DemonRequestMethod.get(this._method));
-			sb.append("\r\n");
-		} else {
+			sb.append(DemonRequestMethod.get(this.method));
+			sb.append("\r\n");	
+		}else{
 			sb.append("ResponseCode : ");
-			sb.append(DemonRequestMethod.get(this._method));
+			sb.append(DemonResponseCode.get(this.method));
 			sb.append("\r\n");
 		}
 		Iterator<DemonHeader> fi = this.getHeaders().iterator();
@@ -338,16 +366,13 @@ public abstract class DemonMessage implements Serializable {
 
 	public String toHexString() {
 		StringBuffer sb = new StringBuffer();
-		sb.append("This message is:");
-		sb.append(this.getMessageType());
-		sb.append("\r\n");
-		if (this.isMessageType(DemonMessageType.Request)) {
+		if (isRequest()) {
 			sb.append("Method:");
-			sb.append(DemonRequestMethod.get(this._method));
+			sb.append(DemonRequestMethod.get(this.method));
 			sb.append("\r\n");
 		} else {
 			sb.append("ResponseCode : ");
-			sb.append(DemonResponseCode.get(this._method));
+			sb.append(DemonResponseCode.get(this.method));
 			sb.append("\r\n");
 		}
 		Iterator<DemonHeader> fi = this.getHeaders().iterator();
@@ -362,7 +387,4 @@ public abstract class DemonMessage implements Serializable {
 		return sb.toString();
 	}
 
-	public void setMethod(byte value) {
-		_method = value;
-	}
 }
