@@ -198,7 +198,7 @@ public class DefaultDemonDedicateConnection extends
 					throws Exception {
 				if (!future.isSuccess()) {
 					if (msg.isRequest())
-						transMgr.removeTransaction(trans.getKey());
+//						transMgr.removeTransaction(trans.getKey());
 					trans.doSendRequestFailed();
 				}
 			}

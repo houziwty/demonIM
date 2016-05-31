@@ -1,15 +1,11 @@
 package netty.common.message;
 
 import java.io.Serializable;
-import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.concurrent.LinkedBlockingQueue;
-
 import netty.common.transaction.DemonTransaction;
-import netty.common.util.DemonLinkedList;
-import netty.common.util.DemonLinkedNode;
 
 public abstract class DemonMessage implements Serializable {
 
@@ -275,67 +271,6 @@ public abstract class DemonMessage implements Serializable {
 		return getHeader(typebyte) != null;
 	}
 
-	public synchronized ByteBuffer toByteBuffer() {
-		int messageSize = 2;
-		headers.moveToHead();
-		DemonLinkedNode<DemonHeader> headerNode = null;
-		while ((headerNode = headers.get()) != null) {
-			messageSize += headerNode.obj().getValueLength() + 2;
-		}
-		bodys.moveToHead();
-		DemonLinkedNode<DemonBody> bodyNode = null;
-		while ((bodyNode = bodys.get()) != null) {
-			messageSize += bodyNode.obj().getValueLength() + 3;
-		}
-		ByteBuffer buffer = ByteBuffer.allocate(messageSize);
-		buffer.put(_method);
-		headers.moveToHead();
-		while ((headerNode = headers.get()) != null) {
-			DemonHeader h = headerNode.obj();
-			int length = h.getValueLength();
-			buffer.put(h.type);
-			buffer.put((byte) length);
-			if (length > 0) {
-				buffer.put(h.getValue(), 0, length);
-			}
-		}
-		bodys.moveToHead();
-		while ((bodyNode = bodys.get()) != null) {
-			DemonBody b = bodyNode.obj();
-			int length = b.getValueLength();
-			buffer.put(b.getType());
-			buffer.put((byte) (length & 0x000000FF));
-			buffer.put((byte) ((length >> 8) & 0x000000FF));
-			if (length > 0) {
-				buffer.put(b.getValue(), 0, length);
-			}
-		}
-
-		buffer.put((byte) 0);
-		buffer.flip();
-
-		return buffer;
-	}
-
-	public byte[] toBytes() {
-		return toByteBuffer().array();
-	}
-
-	public DemonRequest toRequest() {
-		if (_messageType == DemonMessageType.Request) {
-			return (DemonRequest) this;
-		} else {
-			return null;
-		}
-	}
-
-	public DemonResponse toResponse() {
-		if (_messageType == DemonMessageType.Response) {
-			return (DemonResponse) this;
-		} else {
-			return null;
-		}
-	}
 
 	public String toString(boolean printBody) {
 		StringBuffer sb = new StringBuffer();

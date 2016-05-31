@@ -56,9 +56,7 @@ public class DemonTransaction {
 		return timeout;
 	}
 
-	public String getKey(){
-		return request.getKey();
-	}
+	
 	
 	
 	public void setTimeout(int timeout) {
