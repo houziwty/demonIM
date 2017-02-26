@@ -3,24 +3,19 @@ package netty.common.handler;
 
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.SimpleChannelInboundHandler;
+import netty.common.service.DemonServiceListener;
 
-public class DemonHandler implements ChannelHandler {
+public  class DemonHandler extends SimpleChannelInboundHandler<Object> {
 
-	@Override
-	public void handlerAdded(ChannelHandlerContext ctx) throws Exception {
-		
+	public DemonHandler(DemonServiceListener listener) {
 	}
 
 	@Override
-	public void handlerRemoved(ChannelHandlerContext ctx) throws Exception {
+	protected void channelRead0(ChannelHandlerContext ctx, Object msg) throws Exception {
 		
 	}
-
-	@Override
-	public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause)
-			throws Exception {
-		
-	}
-
 
 }
+
+
