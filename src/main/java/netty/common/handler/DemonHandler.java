@@ -7,8 +7,9 @@ import io.netty.channel.SimpleChannelInboundHandler;
 import netty.common.service.DemonServiceListener;
 
 public  class DemonHandler extends SimpleChannelInboundHandler<Object> {
-
+	DemonServiceListener listener;
 	public DemonHandler(DemonServiceListener listener) {
+		this.listener=listener;
 	}
 
 	@Override
