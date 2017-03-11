@@ -1,8 +1,8 @@
-package netty.common.service.impl;
+package netty.common.server;
 
 import io.netty.channel.EventLoopGroup;
 
-public interface IDemonSever {
+public interface DemonSever {
      void run(EventLoopGroup bossGroup,EventLoopGroup workerGroup)throws Exception;
      void close()throws Exception;
 }

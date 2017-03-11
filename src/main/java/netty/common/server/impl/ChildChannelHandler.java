@@ -1,4 +1,4 @@
-package netty.common.service;
+package netty.common.server.impl;
 
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.socket.SocketChannel;
