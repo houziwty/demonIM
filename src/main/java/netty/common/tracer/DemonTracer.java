@@ -1,8 +1,8 @@
 package netty.common.tracer;
 
-import netty.common.message.DemonMessage;
-
 import org.apache.log4j.PropertyConfigurator;
+
+import netty.common.proto.message.DemonMessage;
 
 public class DemonTracer {
 

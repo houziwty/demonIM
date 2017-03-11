@@ -2,7 +2,7 @@ package netty.common.connection;
 
 import java.net.SocketAddress;
 
-import netty.common.message.DemonRequest;
+import netty.common.proto.message.DemonRequest;
 import netty.common.transaction.DemonTransaction;
 import netty.common.transaction.DemonTransactionCreateEvent;
 

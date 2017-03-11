@@ -4,8 +4,8 @@ import java.util.concurrent.atomic.AtomicLong;
 
 import netty.common.connection.DemonDedicateConnection;
 import netty.common.connection.DemonDedicateConnectionProcessor;
-import netty.common.message.DemonRequest;
-import netty.common.message.DemonResponse;
+import netty.common.proto.message.DemonRequest;
+import netty.common.proto.message.DemonResponse;
 import netty.common.tracer.DemonTracer;
 
 /** 

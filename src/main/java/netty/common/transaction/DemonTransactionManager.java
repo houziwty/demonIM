@@ -5,7 +5,7 @@ import java.util.Timer;
 import java.util.concurrent.ConcurrentHashMap;
 
 import netty.common.connection.DefaultDemonDedicateConnection;
-import netty.common.message.DemonRequest;
+import netty.common.proto.message.DemonRequest;
 
 public class DemonTransactionManager {
 

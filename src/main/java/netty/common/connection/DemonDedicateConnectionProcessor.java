@@ -1,8 +1,8 @@
 package netty.common.connection;
 
-import netty.common.message.DemonMessage;
-import netty.common.message.DemonRequest;
-import netty.common.message.DemonResponse;
+import netty.common.proto.message.DemonMessage;
+import netty.common.proto.message.DemonRequest;
+import netty.common.proto.message.DemonResponse;
 import netty.common.transaction.DemonTransaction;
 
 public interface DemonDedicateConnectionProcessor {

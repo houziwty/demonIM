@@ -1,8 +1,8 @@
 package netty.common.service;
 
 import netty.common.handler.DemonHandler;
-import netty.common.message.DemonMessageDecoder;
-import netty.common.message.DemonMessageEncoder;
+import netty.common.proto.message.DemonMessageDecoder;
+import netty.common.proto.message.DemonMessageEncoder;
 import netty.common.service.impl.IDemonSever;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;
