@@ -15,8 +15,8 @@
  */
 package netty.common.proto.code;
 
-import io.moquette.parser.proto.messages.MessageIDMessage;
-import io.moquette.parser.proto.messages.PubAckMessage;
+import netty.common.proto.message.MessageIDMessage;
+import netty.common.proto.message.PubAckMessage;
 
 /**
  *

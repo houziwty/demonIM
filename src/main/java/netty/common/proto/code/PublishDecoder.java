@@ -13,18 +13,17 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-package io.moquette.parser.netty;
+package netty.common.proto.code;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.handler.codec.CorruptedFrameException;
 import io.netty.util.AttributeMap;
+import netty.common.proto.message.PublishMessage;
 import java.util.List;
-import io.moquette.parser.proto.messages.AbstractMessage;
-import io.moquette.parser.proto.messages.PublishMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+import netty.common.proto.message.AbstractMessage;
 /**
  *
  * @author andrea

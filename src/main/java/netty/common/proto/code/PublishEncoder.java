@@ -13,13 +13,12 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-package io.moquette.parser.netty;
+package netty.common.proto.code;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
-import io.moquette.parser.proto.messages.AbstractMessage;
-import io.moquette.parser.proto.messages.PublishMessage;
-
+import netty.common.proto.message.PublishMessage;
+import netty.common.proto.message.AbstractMessage;
 /**
  *
  * @author andrea

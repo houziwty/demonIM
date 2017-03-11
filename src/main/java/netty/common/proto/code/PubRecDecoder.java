@@ -13,10 +13,10 @@
  *
  * You may elect to redistribute this code under either of these licenses.
  */
-package io.moquette.parser.netty;
+package netty.common.proto.code;
 
-import io.moquette.parser.proto.messages.MessageIDMessage;
-import io.moquette.parser.proto.messages.PubRecMessage;
+import netty.common.proto.message.MessageIDMessage;
+import netty.common.proto.message.PubRecMessage;
 
 /**
  *
