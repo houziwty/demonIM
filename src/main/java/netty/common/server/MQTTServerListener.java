@@ -8,7 +8,7 @@ import netty.common.proto.message.PublishMessage;
 import netty.common.proto.message.SubscribeMessage;
 import netty.common.proto.message.UnsubscribeMessage;
 
-public interface ConnectionListener {
+public interface MQTTServerListener {
 	void create(ChannelHandlerContext ctx) throws Exception;
 
 	void connected(ConnectMessage msg, ChannelHandlerContext ctx)
@@ -24,7 +24,7 @@ public interface ConnectionListener {
 			throws Exception;
 
 	
-	//目前没有 query
+	//目前没有 query 以后会有query 设计
 //	void queryArrived(QueryMessage msg, ChannelHandlerContext ctx)
 //			throws Exception;
 //

@@ -11,16 +11,16 @@ import io.netty.handler.timeout.ReadTimeoutHandler;
 import netty.common.handler.MqttMessageServerHandler;
 import netty.common.proto.code.MQTTDecoder;
 import netty.common.proto.code.MQTTEncoder;
-import netty.common.server.ConnectionListener;
+import netty.common.server.MQTTServerListener;
 import netty.common.server.DemonSever;
 
 public class MqttServer implements DemonSever {
-	private ConnectionListener listener;
+	private MQTTServerListener listener;
 	private Channel channel = null;
 	private String ip;
 	private int port;
 
-	public MqttServer(String ip, int port, ConnectionListener listener) {
+	public MqttServer(String ip, int port, MQTTServerListener listener) {
 		this.ip = ip;
 		this.port = port;
 		this.listener = listener;
