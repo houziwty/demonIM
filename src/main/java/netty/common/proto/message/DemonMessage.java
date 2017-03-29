@@ -5,7 +5,6 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.concurrent.LinkedBlockingQueue;
-import netty.common.transaction.DemonTransaction;
 
 public abstract class DemonMessage implements Serializable {
 
