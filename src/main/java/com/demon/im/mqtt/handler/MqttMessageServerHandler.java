@@ -98,11 +98,10 @@ public class MqttMessageServerHandler extends SimpleChannelInboundHandler<Abstra
 			LOGGER.error("exception", cause);
 		}else if(incoming.isActive()){
 			LOGGER.error("exception", cause);
-			listener.closed(ctx);
 		}else{
 			LOGGER.error("exception", cause);
 		}
-
+		listener.closed(ctx);
 	}
 
 }

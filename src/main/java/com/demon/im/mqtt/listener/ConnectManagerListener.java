@@ -2,12 +2,13 @@ package com.demon.im.mqtt.listener;
 
 import io.netty.channel.ChannelHandlerContext;
 import com.demon.im.mqtt.proto.message.*;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 /**
  * Created by Demon on 2017/4/7.
  */
 public class ConnectManagerListener implements  MQTTServerListener {
-
+    public static Logger LOGGER = LoggerFactory.getLogger(ConnectManagerListener.class);
 
     @Override
     public void connected(ConnectMessage msg, ChannelHandlerContext ctx) throws Exception {
