@@ -1,5 +1,7 @@
 package com.demon.im.mqtt.listener;
 
+import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
 import com.demon.im.mqtt.proto.message.*;
 import org.slf4j.Logger;
@@ -12,7 +14,14 @@ public class ConnectManagerListener implements  MQTTServerListener {
 
     @Override
     public void connected(ConnectMessage msg, ChannelHandlerContext ctx) throws Exception {
-
+        ConnAckMessage ackMessage = new ConnAckMessage();
+ctx.writeAndFlush(ackMessage).addListener(new ChannelFutureListener() {
+    @Override
+    public void operationComplete(ChannelFuture future) throws Exception {
+        // 注册管道
+        // 添加路由信息
+    }
+});
     }
 
     @Override
