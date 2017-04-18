@@ -1,27 +1,35 @@
 package com.demon.im.mqtt.listener;
 
+import com.demon.service.UserService;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
 import com.demon.im.mqtt.proto.message.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 /**
  * Created by Demon on 2017/4/7.
  */
-public class ConnectManagerListener implements  MQTTServerListener {
+public class ConnectManagerListener implements MQTTServerListener {
+
+
+    UserService userService;
     public static Logger LOGGER = LoggerFactory.getLogger(ConnectManagerListener.class);
 
     @Override
     public void connected(ConnectMessage msg, ChannelHandlerContext ctx) throws Exception {
         ConnAckMessage ackMessage = new ConnAckMessage();
-ctx.writeAndFlush(ackMessage).addListener(new ChannelFutureListener() {
-    @Override
-    public void operationComplete(ChannelFuture future) throws Exception {
-        // 注册管道
-        // 添加路由信息
-    }
-});
+        msg.getClientID();
+        msg.getPassword();
+        msg.getUsername();
+        ctx.writeAndFlush(ackMessage).addListener(new ChannelFutureListener() {
+            @Override
+            public void operationComplete(ChannelFuture future) throws Exception {
+                // 注册管道
+                // 添加路由信息
+            }
+        });
     }
 
     @Override
