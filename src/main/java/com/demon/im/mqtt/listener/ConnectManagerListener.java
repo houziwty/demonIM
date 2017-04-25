@@ -1,5 +1,6 @@
 package com.demon.im.mqtt.listener;
 
+import com.demon.im.mqtt.common.ContextAttributeKey;
 import com.demon.service.UserService;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;
@@ -34,7 +35,7 @@ public class ConnectManagerListener implements MQTTServerListener {
 
     @Override
     public void disconnected(DisconnectMessage msg, ChannelHandlerContext ctx) throws Exception {
-
+     
     }
 
     @Override

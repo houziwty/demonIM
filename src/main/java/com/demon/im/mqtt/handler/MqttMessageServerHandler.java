@@ -90,6 +90,15 @@ public class MqttMessageServerHandler extends SimpleChannelInboundHandler<Abstra
 	}
 
 	@Override
+	public void channelInactive(ChannelHandlerContext ctx) throws Exception {
+		super.channelInactive(ctx);
+		if (listener != null) {
+			listener.closed(ctx);
+		}
+		ctx.channel().close();
+	}
+
+	@Override
 	public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
 		Channel incoming=ctx.channel();
 		if(cause instanceof ReadTimeoutException){
