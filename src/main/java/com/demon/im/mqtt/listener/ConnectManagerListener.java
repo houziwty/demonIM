@@ -35,7 +35,7 @@ public class ConnectManagerListener implements MQTTServerListener {
 
     @Override
     public void disconnected(DisconnectMessage msg, ChannelHandlerContext ctx) throws Exception {
-
+        String identifier = ctx.channel().attr(ContextAttributeKey.SESSION_KEY).get();
     }
 
     @Override
