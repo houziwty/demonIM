@@ -35,6 +35,7 @@ public class MqttServer implements DemonSever {
 						ChannelPipeline pipeline=ch.pipeline();
 						pipeline.addLast("framer",new MQTTDecoder());
 						pipeline.addLast("encoder",new MQTTEncoder());
+
 						pipeline.addLast(new ReadTimeoutHandler(300));
 						pipeline.addLast("handler", new MqttMessageServerHandler(listener));
 

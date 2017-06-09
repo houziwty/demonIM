@@ -1,6 +1,7 @@
 package com.demon.im.mqtt.listener;
 
 import com.demon.im.mqtt.common.ContextAttributeKey;
+import com.demon.model.UserModel;
 import com.demon.service.UserService;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelFutureListener;
@@ -60,7 +61,18 @@ public class ConnectManagerListener implements MQTTServerListener {
 
     @Override
     public void pingArrived(ChannelHandlerContext ctx) throws Exception {
-
+        String identifier = ctx.channel().attr(ContextAttributeKey.SESSION_KEY).get();
+        if (!identifier.isEmpty()) {
+              //业务上设置用户信息和session信息
+            UserModel user = new UserModel();
+            user.setDeviceId(ctx.channel().attr(ContextAttributeKey.DEVICEID).get());
+            user.setUserId(ctx.channel().attr(ContextAttributeKey.USERID).get());
+            user.setDeviceType(ctx.channel().attr(ContextAttributeKey.DEVICETYPE).get());
+            user.setToken(ctx.channel().attr(ContextAttributeKey.TOKEND).get());
+            String sessionId = ctx.channel().attr(ContextAttributeKey.SESSION_KEY).get();
+//            proxyConfig.getSessionStore().updatePingTime(sessionId);
+        }
+        ctx.writeAndFlush(new PingRespMessage());
     }
 
     @Override

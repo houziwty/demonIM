@@ -19,4 +19,6 @@ public class ContextAttributeKey {
     public static final AttributeKey<String> DEVICETYPE = AttributeKey.newInstance("STATE.deviceType");
 
     public static final AttributeKey<String> TOKEND = AttributeKey.newInstance("STATE.token");
+
+
 }
