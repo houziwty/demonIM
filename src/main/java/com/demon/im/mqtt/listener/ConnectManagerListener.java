@@ -17,6 +17,9 @@ public class ConnectManagerListener implements MQTTServerListener {
 
 
     UserService userService;
+
+
+
     public static Logger LOGGER = LoggerFactory.getLogger(ConnectManagerListener.class);
 
     @Override
@@ -30,12 +33,16 @@ public class ConnectManagerListener implements MQTTServerListener {
             public void operationComplete(ChannelFuture future) throws Exception {
                 // 注册管道
                 // 添加路由信息
+                if(future.isSuccess()){
+
+                }
             }
         });
     }
 
     @Override
     public void disconnected(DisconnectMessage msg, ChannelHandlerContext ctx) throws Exception {
+        //断开连接
         String identifier = ctx.channel().attr(ContextAttributeKey.SESSION_KEY).get();
     }
 
