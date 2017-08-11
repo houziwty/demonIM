@@ -2,15 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e4d22bf0-009b-47f4-9f24-96a0807237ce" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/demon/im/mqtt/config/ProxyConfig.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/demon/akka/AkkaJava$Greet.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/demon/akka/AkkaJava$GreetPrinter.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/demon/akka/AkkaJava$Greeter.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/demon/akka/AkkaJava$Greeting.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/demon/akka/AkkaJava$WhoToGreet.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/demon/akka/AkkaJava.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/demon/im/mqtt/listener/ConnectManagerListener.java" afterPath="$PROJECT_DIR$/src/main/java/com/demon/im/mqtt/listener/ConnectManagerListener.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/demon/im/util/IPUtil.java" afterPath="$PROJECT_DIR$/src/main/java/com/demon/im/util/IPUtil.java" />
     </list>
     <ignored path="DemonNetty.iws" />
@@ -87,8 +78,8 @@
       <file leaf-file-name="IPUtil.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/demon/im/util/IPUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="675">
-              <caret line="28" column="17" selection-start-line="28" selection-start-column="17" selection-end-line="28" selection-end-column="17" />
+            <state relative-caret-position="476">
+              <caret line="34" column="73" selection-start-line="34" selection-start-column="73" selection-end-line="34" selection-end-column="73" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -1010,12 +1001,12 @@
       <workItem from="1496996571377" duration="686000" />
       <workItem from="1499137235970" duration="624000" />
       <workItem from="1499150991130" duration="21000" />
-      <workItem from="1502435251124" duration="2337000" />
+      <workItem from="1502435251124" duration="2931000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40391000" />
+    <option name="totallyTimeSpent" value="40985000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
@@ -1335,8 +1326,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/demon/im/util/IPUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
-          <caret line="28" column="17" selection-start-line="28" selection-start-column="17" selection-end-line="28" selection-end-column="17" />
+        <state relative-caret-position="476">
+          <caret line="34" column="73" selection-start-line="34" selection-start-column="73" selection-end-line="34" selection-end-column="73" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

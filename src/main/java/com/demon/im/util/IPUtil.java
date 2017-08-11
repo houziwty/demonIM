@@ -32,6 +32,6 @@ public class IPUtil {
         } catch (Exception exp) {
             throw new IllegalStateException("can not get local ip address!", exp);
         }
-
+        throw new IllegalStateException("can not get local ip address!");
     }
 }
