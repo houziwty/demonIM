@@ -46,6 +46,7 @@ public class ConnectManagerListener implements MQTTServerListener {
         String identifier = ctx.channel().attr(ContextAttributeKey.SESSION_KEY).get();
     }
 
+    //发送消息
     @Override
     public void publishArrived(PublishMessage msg, ChannelHandlerContext ctx) throws Exception {
 
@@ -66,6 +67,7 @@ public class ConnectManagerListener implements MQTTServerListener {
 
     }
 
+    //心跳保持
     @Override
     public void pingArrived(ChannelHandlerContext ctx) throws Exception {
         String identifier = ctx.channel().attr(ContextAttributeKey.SESSION_KEY).get();
