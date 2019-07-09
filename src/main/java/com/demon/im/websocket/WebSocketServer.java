@@ -16,6 +16,7 @@ import io.netty.handler.codec.http.HttpServerCodec;
 import io.netty.handler.stream.ChunkedWriteHandler;
 
 public class WebSocketServer {
+	
 	public static final Logger LOGGER=LoggerFactory.getLogger(WebSocketServer.class);
 	
 	
