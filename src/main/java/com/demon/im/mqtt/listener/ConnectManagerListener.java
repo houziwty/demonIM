@@ -18,8 +18,6 @@ public class ConnectManagerListener implements MQTTServerListener {
 
     UserService userService;
 
-
-
     public static Logger LOGGER = LoggerFactory.getLogger(ConnectManagerListener.class);
 
     @Override
