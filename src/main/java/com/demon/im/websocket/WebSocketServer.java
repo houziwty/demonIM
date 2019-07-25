@@ -28,7 +28,6 @@ public class WebSocketServer {
 			
 			String osName=System.getProperty("os.name");
 			
-			
 			b.group(bossGroup, workerGroup).channel(NioServerSocketChannel.class)
 					.childHandler(new ChannelInitializer<SocketChannel>() {
 
