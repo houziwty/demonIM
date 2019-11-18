@@ -84,7 +84,7 @@ public class ConnectManagerListener implements MQTTServerListener {
 
     @Override
     public void closed(ChannelHandlerContext ctx) throws Exception {
-
+    	
     }
 
     @Override
