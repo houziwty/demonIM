@@ -42,8 +42,9 @@ public class WebSocketServer {
 
 					});
 			Channel ch = b.bind(port).sync().channel();
-			System.out.println("Web socket server started at port " + port);
-			System.out.println("Open your browser and navigate to http://localhost:" + port);
+			LOGGER.info("Web socket server started at port " + port);
+			LOGGER.info("Open your browser and navigate to http://localhost:" + port);
+
 			ch.closeFuture().sync();
 
 		} catch (Exception ex) {
