@@ -2,37 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e4d22bf0-009b-47f4-9f24-96a0807237ce" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__aopalliance_aopalliance_1_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_guava_guava_19_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_typesafe_akka_akka_actor_2_10_2_3_6.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_typesafe_config_1_2_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_logging_commons_logging_1_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_pool_commons_pool_1_6.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__io_netty_netty_all_4_1_9_Final.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_12.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__log4j_log4j_1_2_17.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_pool2_2_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_scala_lang_scala_library_2_10_4.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_log4j12_1_7_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_aop_4_2_4_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_beans_4_1_6_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_4_2_3_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_support_4_1_6_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_core_4_2_3_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_expression_4_2_3_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_jdbc_4_2_3_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_tx_4_2_3_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_web_4_2_4_RELEASE.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__redis_clients_jedis_2_6_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemonNetty.iml" beforeDir="false" afterPath="$PROJECT_DIR$/DemonNetty.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/demon/im/mqtt/listener/ConnectManagerListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demon/im/mqtt/listener/ConnectManagerListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/.gitignore" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -440,7 +410,10 @@
       <workItem from="1591082819672" duration="598000" />
       <workItem from="1591191078486" duration="438000" />
       <workItem from="1591868264509" duration="337000" />
-      <workItem from="1591868877471" duration="1735000" />
+      <workItem from="1591868877471" duration="5058000" />
+      <workItem from="1592994163821" duration="1738000" />
+      <workItem from="1594818948622" duration="591000" />
+      <workItem from="1595326810604" duration="1516000" />
     </task>
     <servers />
   </component>
@@ -456,24 +429,28 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state width="1398" height="313" key="GridCell.Tab.0.bottom" timestamp="1591927673844">
-      <screen x="0" y="23" width="1440" height="835" />
+    <state width="1398" height="313" key="GridCell.Tab.0.bottom" timestamp="1592916701779">
+      <screen x="0" y="23" width="1440" height="834" />
     </state>
+    <state width="1398" height="313" key="GridCell.Tab.0.bottom/0.23.1440.834@0.23.1440.834" timestamp="1592916701779" />
     <state width="1398" height="313" key="GridCell.Tab.0.bottom/0.23.1440.835/1440.23.1920.1177@0.23.1440.835" timestamp="1591927673844" />
     <state width="1878" height="313" key="GridCell.Tab.0.bottom/0.23.1440.835/1440.23.1920.1177@1440.23.1920.1177" timestamp="1591927424626" />
-    <state width="1398" height="313" key="GridCell.Tab.0.center" timestamp="1591927673843">
-      <screen x="0" y="23" width="1440" height="835" />
+    <state width="1398" height="313" key="GridCell.Tab.0.center" timestamp="1592916701778">
+      <screen x="0" y="23" width="1440" height="834" />
     </state>
+    <state width="1398" height="313" key="GridCell.Tab.0.center/0.23.1440.834@0.23.1440.834" timestamp="1592916701778" />
     <state width="1398" height="313" key="GridCell.Tab.0.center/0.23.1440.835/1440.23.1920.1177@0.23.1440.835" timestamp="1591927673843" />
     <state width="1878" height="313" key="GridCell.Tab.0.center/0.23.1440.835/1440.23.1920.1177@1440.23.1920.1177" timestamp="1591927424626" />
-    <state width="1398" height="313" key="GridCell.Tab.0.left" timestamp="1591927673843">
-      <screen x="0" y="23" width="1440" height="835" />
+    <state width="1398" height="313" key="GridCell.Tab.0.left" timestamp="1592916701773">
+      <screen x="0" y="23" width="1440" height="834" />
     </state>
+    <state width="1398" height="313" key="GridCell.Tab.0.left/0.23.1440.834@0.23.1440.834" timestamp="1592916701773" />
     <state width="1398" height="313" key="GridCell.Tab.0.left/0.23.1440.835/1440.23.1920.1177@0.23.1440.835" timestamp="1591927673843" />
     <state width="1878" height="313" key="GridCell.Tab.0.left/0.23.1440.835/1440.23.1920.1177@1440.23.1920.1177" timestamp="1591927424625" />
-    <state width="1398" height="313" key="GridCell.Tab.0.right" timestamp="1591927673844">
-      <screen x="0" y="23" width="1440" height="835" />
+    <state width="1398" height="313" key="GridCell.Tab.0.right" timestamp="1592916701778">
+      <screen x="0" y="23" width="1440" height="834" />
     </state>
+    <state width="1398" height="313" key="GridCell.Tab.0.right/0.23.1440.834@0.23.1440.834" timestamp="1592916701778" />
     <state width="1398" height="313" key="GridCell.Tab.0.right/0.23.1440.835/1440.23.1920.1177@0.23.1440.835" timestamp="1591927673844" />
     <state width="1878" height="313" key="GridCell.Tab.0.right/0.23.1440.835/1440.23.1920.1177@1440.23.1920.1177" timestamp="1591927424626" />
     <state x="1794" y="256" key="new project wizard" timestamp="1590819941214">
